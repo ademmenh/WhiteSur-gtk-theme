@@ -11,42 +11,6 @@ $panel_height: $menuitem_size;
   $panel_height: $menuitem_size + 4px;
 }
 
-#panel.login-screen {
-  @if $scale != 'default' {
-    @include fontsize($base_font_size * 2 - 2);
-    height: $panel_height * 2 !important;
-
-    .panel-button {
-      -natural-hpadding: $container_padding * 2 + 4px !important;
-      -minimum-hpadding: $container_padding * 2 + 4px !important;
-      border-radius: $bt_radius * 2 !important;
-
-      &.clock-display {
-        StLabel { padding: 0 $base_padding * 2 !important; }
-
-        .clock {
-          border-radius: $bt_radius * 2 !important;
-        }
-      }
-
-      // status area icons
-      .system-status-icon {
-        icon-size: $base_icon_size * 2 !important;
-        padding: $base_padding * 2 !important;
-        margin: 0 $base_padding * 2 !important;
-      }
-
-      .panel-status-menu-box StLabel { padding: 0 0 0 $base_padding !important; }
-
-      .appindicator-trayicons-box { margin: 0 $base_padding * 2 !important; }
-
-      StIcon {
-        icon-size: 32px !important;
-      }
-    }
-  }
-}
-
 %normal_activites {
   -natural-hpadding: $base_padding * 3;
   color: $panel_fg;
@@ -108,13 +72,13 @@ $panel_height: $menuitem_size;
 
 #panel {
   background-color: $panel_bg;
-  font-weight: 500;
+  font-weight: 600;
   @extend %numeric;
   color: $panel_fg;
   transition-duration: 250ms;
   // @include font(body-1);
   height: $panel_height !important;
-  box-shadow: 0 5px 16px rgba(black, 0.05);
+  // box-shadow: 5px 5px 16px rgba(black, 0.5);
 
   // the rounded outset corners
   .panel-corner {
@@ -181,7 +145,13 @@ $panel_height: $menuitem_size;
     .unlock-screen &,
     .login-screen &,
     .lock-screen & {
-      &, &:focus, &:hover, &:active { color: $panel_fg; }
+      &,
+      &:focus,
+      &:hover,
+      &:active { 
+        background-color: $panel_bg;
+        color: $panel_fg; 
+      }
     }
 
     .login-screen &,
@@ -202,9 +172,10 @@ $panel_height: $menuitem_size;
         // transition-duration: 150ms;
         border: none;
         border-radius: $bt_radius;
+        
         background-color: transparent;
         box-shadow: none;
-        padding: 0 $base_padding + 12px !important;
+        padding: 0 $base_padding + 12 !important;
         margin: 0 !important;
       }
 
@@ -273,7 +244,15 @@ $panel_height: $menuitem_size;
     &.screen-recording-indicator,
     &.screen-sharing-indicator {
       border: 3px solid transparent;
-      background-color: transparent;
+      box-shadow: inset 0 0 0 1000px $selected_bg_color !important;
+
+      &:hover {
+        box-shadow: inset 0 0 0 1000px mix(#FFFFFF, $selected_bg_color, 40%) !important;
+      }
+
+      &:active {
+        box-shadow: inset 0 0 0 1000px mix(#FFFFFF, $selected_bg_color, 80%) !important;
+      }
 
       StBoxLayout {
         spacing: $scaled_padding;
@@ -284,30 +263,14 @@ $panel_height: $menuitem_size;
       }
     }
 
-    &.screen-recording-indicator {
-      box-shadow: inset 0 0 0 1000px $error_color !important;
-
-      &:hover {
-        box-shadow: inset 0 0 0 1000px mix($panel_fg, $error_color, 12%) !important;
-      }
-
-      &:active {
-        box-shadow: inset 0 0 0 1000px mix($panel_fg, $error_color, 24%) !important;
-      }
-    }
-
-    &.screen-sharing-indicator {
-      box-shadow: inset 0 0 0 1000px $warning_color !important;
-
-      &:hover {
-        box-shadow: inset 0 0 0 1000px mix($panel_fg, $warning_color, 12%) !important;
-      }
-
-      &:active {
-        box-shadow: inset 0 0 0 1000px mix($panel_fg, $warning_color, 24%) !important;
-      }
-    }
   }
+
+  // indicator for active
+  .screencast-indicator,
+  .remote-access-indicator { color: $selected_bg_color; }
+
+  // important privacy related indicators
+  .privacy-indicator { color: $selected_bg_color; }
 
   Gjs_AggregateMenu.panel-button,
   Gjs_ui_panel_AggregateMenu.panel-button,
@@ -339,15 +302,16 @@ $panel_height: $menuitem_size;
     background-color: transparent;
     box-shadow: none;
 
-    StLabel, StIcon { color: $light_alt_fg_color; }
+    StLabel, StIcon { color: $panel_fg; }
 
     .panel-button {
+
       &:hover {
-        color: $light_fg_color;
         background-color: $light_divider_color;
 
         &.clock-display {
           .clock {
+            // background-color: transparent;
             background-color: $light_divider_color;
           }
         }
@@ -355,7 +319,7 @@ $panel_height: $menuitem_size;
 
       &:active, &:overview, &:focus, &:checked {
         &, &:hover {
-          color: $light_fg_color;
+          color: $light_divider_color;
           background-color: $light_track_color;
         }
 
@@ -385,6 +349,13 @@ $panel_height: $menuitem_size;
           .workspace-dot {
             background-color: $light_fg_color;
           }
+          // indicator for active
+          .screencast-indicator,
+          .remote-access-indicator { color: $selected_bg_color; }
+        
+          // important privacy related indicators
+          .privacy-indicator { color: $selected_bg_color; }
+        
         }
       }
     }
@@ -396,10 +367,40 @@ $panel_height: $menuitem_size;
     }
   }
 
-  // indicator for active
-  .screencast-indicator,
-  .remote-access-indicator { color: $warning_color; }
+}
 
-  // important privacy related indicators
-  .privacy-indicator { color: $warning_color; }
+#panel.login-screen {
+  @if $scale != 'default' {
+    @include fontsize($base_font_size * 2 - 2);
+    height: $panel_height * 2 !important;
+
+    .panel-button {
+      -natural-hpadding: $container_padding * 2 + 4px !important;
+      -minimum-hpadding: $container_padding * 2 + 4px !important;
+      border-radius: $bt_radius * 2 !important;
+
+      &.clock-display {
+        StLabel { padding: 0 $base_padding * 2 !important; }
+
+        .clock {
+          border-radius: $bt_radius * 2 !important;
+        }
+      }
+
+      // status area icons
+      .system-status-icon {
+        icon-size: $base_icon_size * 2 !important;
+        padding: $base_padding * 2 !important;
+        margin: 0 $base_padding * 2 !important;
+      }
+
+      .panel-status-menu-box StLabel { padding: 0 0 0 $base_padding !important; }
+
+      .appindicator-trayicons-box { margin: 0 $base_padding * 2 !important; }
+
+      StIcon {
+        icon-size: 32px !important;
+      }
+    }
+  }
 }
