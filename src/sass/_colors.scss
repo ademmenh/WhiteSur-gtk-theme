@@ -1,6 +1,11 @@
 @function gtkalpha($c, $a) {
-  @return unquote("alpha(#{$c},#{$a})");
+  @if type-of($c) == 'color' {
+    @return rgba($c, $a);                     // objeto-cor quando $c é cor Sass
+  }
+  @return unquote("rgba(#{$c}, #{$a})");      // string para currentColor etc.
 }
+
+
 
 @function gtkmix($c1,$c2,$r) {
   $ratio: 1 -  $r / 100%; // match SCSS gtkmix()
@@ -23,12 +28,15 @@
 @import 'colors-palette';
 
 // Base colors
-$base_color:                        if($variant == 'light', #ffffff, if($darker == 'true', #1f1f1f, #242424));
-$text_color:                        if($variant == 'light', #363636, #dadada);
-$bg_color:                          if($variant == 'light', #f5f5f5, if($darker == 'true', #282828, #333333));
-$fg_color:                          if($variant == 'light', #242424, #dedede);
-$alt_fg_color:                      if($variant == 'light', #424242, #afafaf);
-$hint_fg_color:                     if($variant == 'light', #565656, #999999);
+$base_color:                          if($variant == 'light', hsl(0, 0%, 95%), if($darker == 'true', hsl(0, 0%, 10%), hsl(0, 0%, 16%)));
+// power, lock, setting, screenshot icnos
+$text_color:                        if($variant == 'light', hsl(0, 0%, 16%), #ffffff);
+$bg_color:                          $base_color;
+// $bg_color:                          if($variant == 'light', #f5f5f5, if($darker == 'true', #282828, #333333));
+$fg_color:                          if($variant == 'light', hsl(0, 0, 10%), hsl(0, 0%, 100%));
+// $fg_color:                          if($variant == 'light', #000000, #ffffff);
+$alt_fg_color:                      if($variant == 'light', #000000, #ffffff);
+$hint_fg_color:                     if($variant == 'light', hsl(0, 0%, 10%), hsl(0, 0%, 70%));
 
 @if $scheme == 'nord' {
   $base_color:                      if($variant == 'light', #fbfcfd, if($darker == 'true', #1d2025, #252932));
@@ -51,11 +59,11 @@ $divider_color:                     if($variant == 'light', gtkalpha(currentColo
 $fill_color:                        if($variant == 'light', gtkalpha(currentColor, 0.06), gtkalpha(currentColor, 0.05));
 
 $light_fg_color:                    white;
-$light_alt_fg_color:                rgba(white, 0.85);
+$light_alt_fg_color:                rgba(white, 0.75);
 $light_hint_fg_color:               rgba(white, 0.50);
 $light_disabled_fg_color:           rgba(white, 0.45);
 $light_alt_disabled_fg_color:       rgba(white, 0.35);
-$light_track_color:                 rgba(white, 0.2);
+$light_track_color:                 rgba(white, 0.24);
 $light_divider_color:               rgba(white, 0.12);
 $light_fill_color:                  rgba(white, 0.06);
 
@@ -118,7 +126,7 @@ $alt_solid_bg_color:                if($variant == 'light', #c0c0c0, #242424);
 }
 
 // Link colors
-$link_color:                        if($scheme == 'nord', #5e81ac, #3484e2);
+$link_color:                        if($scheme == 'nord', #5e81ac, $selected_bg_color);
 $link_visited_color:                if($variant == 'light', lighten($text_color, 10%), darken($text_color, 15%));
 
 // Theme colors
@@ -143,14 +151,13 @@ $header_fg:                         if($variant == 'light', #575757, #FDFDFD);
   $header_fg:                       if($variant == 'light', #57647f, #f8f9fc);
 }
 
-$dark_header_bg:                    if($trans == 'true', rgba($base_color, 0.96), $base_color);
+$dark_header_bg:                    if($trans == 'true', gtkalpha($base_color, 0.96), $base_color);
 $header_bg_backdrop:                if($variant == 'light', gtkmix(black, $header_bg, 2%), gtkmix(black, $header_bg, 1%));
 $header_border:                     if($variant == 'light', gtkmix(black, $header_bg, 12%), gtkmix(black, $header_bg, 75%));
 $header_border_backdrop:            if($variant == 'light', gtkmix(black, $header_bg, 8%), gtkmix(black, $header_bg, 45%));
 
 // Sidebar colors
 $dark_sidebar_bg: white;
-$opacity: 0.96;
 
 @if $trans=='true' {
   @if $variant=='light' {
@@ -187,7 +194,7 @@ $dialog_bg_color:                   if($variant == 'light', $bg_color, $base_col
 
 //OSD colors
 $osd_fg_color:                      if($scheme == 'nord', #dadada, #d3d7df);
-$solid_osd_bg_color:                if($darker == 'true', #1a1a1a, #2a2a2a);
+$solid_osd_bg_color:                if($darker == 'true', hsl(0, 0%, 10%), hsl(0, 0%, 16%));
 
 @if $scheme == 'nord' {
   $solid_osd_bg_color:              if($darker == 'true', #16191e, #222730);
@@ -204,8 +211,8 @@ $osd_disabled_fg_color:             rgba($solid_osd_bg_color, 0.35);
 $osd_borders_color:                 $dark_borders_color;
 
 // Menu colors
-$menu_bg:                           if($variant == 'light', $base_color, $bg_color);
-$menu_bd:                           if($variant == 'light', rgba(black, 0.08), rgba(white, 0.07));
+$menu_bg:                           $bg_color;
+$menu_bd:                           $bg_color;
 
 @if $trans == 'true' {
   $menu_bg:                         if($variant == 'light', rgba($base_color, $opacity), rgba($bg_color, $opacity));
@@ -228,8 +235,12 @@ $submenu_bg_color:                  if($variant == 'light', rgba(white, 1), rgba
   }
 }
 
+// notifications
+$notifications_fg:                        $fg_color;
+$notifications_bg:                        $bg_color;
+
 // Panel colors
-$panel_bg:                          if($variant == 'light', #f1f1f1, if($darker == 'true', #1f1f1f, #2a2a2a));
+$panel_bg:                          $bg_color; 
 
 @if $scheme == 'nord' {
   $panel_bg:                        if($variant == 'light', #f0f1f4, if($darker == 'true', #1a1d24, #222730));
@@ -247,18 +258,22 @@ $panel_bg:                          if($variant == 'light', #f1f1f1, if($darker 
   }
 }
 
-$panel_text:                        if($variant == 'light', #363636, white);
+$panel_text:                        $fg_color;
 
 @if $scheme == 'nord' {
   $panel_text:                      if($variant == 'light', #2d333f, #fbfcfd);
 }
 
 $panel_fg:                          if($trans == 'true' and $panel_font == 'white', white, $panel_text);
-$panel_track:                       if(($trans == 'false' or $panel_font == 'black') and $variant == 'light', rgba(black, 0.15), rgba(white, 0.28));
-$panel_divider:                     if(($trans == 'false' or $panel_font == 'black') and $variant == 'light', rgba(black, 0.08), rgba(white, 0.15));
+$panel_track:                       rgba(white, 0.24);
+$panel_divider:                     rgba(white, 0.12);
 
-$dash_fg:                           if($variant == 'light', black, white);
-$dash_bg:                           if($variant == 'light', rgba(#d1d1d1, $panel_opacity + 0.33), rgba(if($darker == 'true', #1f1f1f, #222222), $panel_opacity/2 + 0.6));
+$dash_fg:                           $fg_color;
+$dash_bg:                           $base_color;
+
+@if $trans == 'true' and $panel_font == 'white' {
+  $dash_bg:                         rgba($dash_bg, $panel_opacity);
+}
 
 @if $trans == 'true' and $panel_font == 'black' {
   $dash_bg:                         if($variant == 'light', rgba(#d1d1d1, $panel_opacity/2 + 0.08), rgba(if($darker == 'true', #1f1f1f, #222222), $panel_opacity + 0.15));
@@ -272,8 +287,9 @@ $dash_bg:                           if($variant == 'light', rgba(#d1d1d1, $panel
   }
 }
 
+
 // Entry colors
-$entry_bg:                          if($variant=='light', rgba(black, 0.05), rgba(white, 0.05));
+$entry_bg:                          $bg_color;
 $entry_border:                      $borders_color;
 $entry_highlight:                   gtkalpha($selection_mode_bg, 0.75);
 
@@ -291,7 +307,7 @@ $button_highlight:                  if($variant == 'light', white, rgba(white, 0
 $button_borders:                    if($variant == 'light', $button_border, $dark_borders_color);
 
 // WM colors
-$wm_outline_light:                  0 0 0 2px rgba(black, 0.03), 0 0 0 1px rgba(black, 0.12);
+$wm_outline_light:                  0 0 0 2px rgba(black, 0.05), 0 0 0 1px rgba(#000000, 0.10);
 $wm_outline_dark:                   0 0 0 2px rgba(black, 0.1), 0 0 0 1px rgba(black, 0.75);
 $wm_border:                         if($variant=='light', rgba(black, 0.15), rgba(black, 0.75));
 $wm_shadow:                         if($variant=='light', rgba(black, 0.15), rgba(black, 0.35));
