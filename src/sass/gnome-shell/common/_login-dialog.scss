@@ -1,69 +1,86 @@
 /* Login Dialog */
 
 #lockDialogGroup {
-    background-color: $solid_osd_bg_color;
-    background-image: url("assets/background.png");
-    background-size: cover;
+  background-color: $solid_osd_bg_color;
+  background-image: url("assets/background.png");
+  background-size: cover;
 
-    @if $scale != "default" {
-        .user-icon {
-            icon-size: $base_icon_size * 2;
-
-            & StIcon {
-                padding: 24px;
-                width: $base_icon_size * 5;
-                height: $base_icon_size * 5;
-            }
-        }
-    }
-
+  /* 
+  @if $scale != 'default' {
     .user-icon {
-        icon-size: $base_icon_size * 8;
+      icon-size: $base_icon_size * 2;
 
-        // user face icon
-        & StIcon {
-            margin: 0px;
-            // padding: 32px;
-            width: $base_icon_size * 32;
-            height: $base_icon_size * 32;
-        }
+      & StIcon {
+        padding: 24px;
+        width: $base_icon_size * 5;
+        height: $base_icon_size * 5;
+      }
     }
+  }
+  */
+
+  .user-icon {
+    icon-size: $base_icon_size * 12;
+
+    // user face icon
+    & StIcon {
+      margin: 0px;
+      // padding: 32px;
+      width: $base_icon_size * 32;
+      height: $base_icon_size * 32;
+    }
+  }
+
+  .login-dialog-user-list-item {
+    .user-icon {
+      icon-size: $base_icon_size * 4;
+
+      // user face icon
+      & StIcon {
+        margin: 200px;
+        // padding: 32px;
+        width: $base_icon_size * 32;
+        height: $base_icon_size * 32;
+      }
+    }
+  }
+
 }
 
 .login-dialog-banner-view {
-    @if $scale == "default" {
-        padding-top: 24px;
-        max-width: 12em;
-    } @else {
-        padding-top: 42px;
-        max-width: 24em;
-    }
+  @if $scale == 'default' {
+    padding-top: 24px;
+    max-width: 12em;
+  } @else {
+    padding-top: 42px;
+    max-width: 24em;
+  }
 }
 
 .unlock-dialog {
-    StEntry {
-        @include fontsize($base_font_size);
-        padding: 0 $base_padding * 2 !important;
+  StEntry {
+    @include fontsize($base_font_size);
+    padding: 0 $base_padding * 2 !important;
 
-        StIcon.peek-password {
-            padding: 0 $base_padding * 2 !important;
-        }
-
-        StLabel.hint-text {
-            margin-left: $base_padding / 2 !important;
-        }
+    StIcon.peek-password {
+      padding: 0 $base_padding * 2 !important;
     }
 
-    .modal-dialog-button-box {
-        spacing: $container_padding / 2 !important;
+    StLabel.hint-text {
+      margin-left: $base_padding / 2 !important;
     }
+  }
 
-    .modal-dialog-button {
-        padding: 2px $container_padding * 2 !important;
-    }
+  .modal-dialog-button-box {
+    spacing: $container_padding / 2 !important;
+  }
 
-    // replaced in the bottom
-    /*
+  .modal-dialog-button {
+    padding: 2px $container_padding * 2 !important;
+  }
+
+  // replaced in the bottom
+  /*
   .cancel-button,
   .switch-user-button,
   .login-dialog-session-list-button {
@@ -77,25 +94,31 @@
   }
   */
 
-    .login-dialog-logo-bin {
-        padding: $container_padding * 4 0;
-    }
-    .login-dialog-button-box {
-        spacing: $container_padding;
-    }
-    .login-dialog-message-hint {
-        padding-top: 0;
-        padding-bottom: $container_padding * 3;
-    }
-    // replaced in bottom
-    /*
+  //replaced in bottom
+  /*
+  .login-dialog-logo-bin {
+    background-color: #f00;
+    padding: $container_padding * 4 0;
+  }
+  .login-dialog-button-box {
+    background-color: #f0f;
+    spacing: $container_padding;
+  }
+  .login-dialog-message-hint {
+    padding-top: 0;
+    padding-bottom: $container_padding * 3;
+  }
+  */
+
+  // replaced in bottom
+  /*
     .login-dialog-user-selection-box {
     padding: 100px 0px;
     }
   */
 
-    // replaced
-    /*
+  // replaced
+  /*
   .login-dialog-not-listed-label {
     padding-left: 2px;
   }
@@ -107,14 +130,15 @@
   }
   */
 
-    /*
+  
+  /*
   .login-dialog-user-list-view {
     -st-vfade-offset: 1em;
   }
   */
 
-    // replaced  in bottom
-    /*
+  // replaced  in bottom
+  /*
   .login-dialog-user-list {
     spacing: $container_padding * 10;
     padding: 5em;
@@ -124,8 +148,8 @@
   }
   */
 
-    // replaced by .login-dialog-user-list-item in bottom
-    /*
+  // replaced by .login-dialog-user-list-item in bottom
+  /*
   .login-dialog-user-list-item {
     // border-radius: $mn_radius;
     border-radius: $bt_radius;
@@ -142,7 +166,7 @@
   }
   */
 
-    /*
+  /*
   .user-widget.horizontal
   .user-widget-label {
     @include fontsize($base_font_size + 2);
@@ -162,69 +186,71 @@
   }
   */
 
-    // password prompt container
-    .login-dialog-prompt-layout {
-        padding-top: $container_padding * 4;
-        padding-bottom: $container_padding * 2;
-        spacing: $base_spacing * 2;
-        width: 24em;
-    }
+  /*
+  // password prompt container
+  .login-dialog-prompt-layout {
+    padding-top: $container_padding * 4,;
+    padding-bottom: $container_padding * 2;
+    spacing: $base_spacing * 2;
+    width: 24em;
+  }
 
-    // password prompt
-    .login-dialog-prompt-entry {
-        border-radius: $bt_radius;
-        height: 2em;
-        // background-color: #00f; it is shown only in annimation
-    }
+  // password prompt
+  .login-dialog-prompt-entry {
+    border-radius: $bt_radius;
+    height: 2em;
+    // background-color: #00f; it is shown only in annimation
+  }
 
-    .login-dialog-prompt-label {
-        @include fontsize($base_font_size + 1px);
-        padding-top: 1em;
-    }
+  .login-dialog-prompt-label {
+    @include fontsize($base_font_size + 1px);
+    padding-top: 1em;
+  }
+  */
 }
 
 .login-dialog {
-    StEntry {
-        @if $scale != "default" {
-            @include fontsize($base_font_size + 3);
-            padding: 0 $base_padding * 4 !important;
+  StEntry {
+    @if $scale != 'default' {
+      @include fontsize($base_font_size + 3);
+      padding: 0 $base_padding * 4 !important;
 
-            StIcon.peek-password {
-                padding: 0 $base_padding * 2 !important;
-            }
+      StIcon.peek-password {
+        padding: 0 $base_padding * 2 !important;
+      }
 
-            StLabel.hint-text {
-                margin-left: $base_padding !important;
-            }
-        }
-
-        StIcon {
-            icon-size: if($scale == "default", 16px, 32px);
-            padding: 0;
-            margin: 0;
-        }
+      StLabel.hint-text {
+        margin-left: $base_padding !important;
+      }
     }
 
-    .modal-dialog-button-box {
-        @if $scale == "default" {
-            spacing: $container_padding / 2;
-        } @else {
-            spacing: $container_padding;
-        }
+    StIcon {
+      icon-size: if($scale == 'default', 16px, 32px);
+      padding: 0;
+      margin: 0;
     }
+  }
 
-    .modal-dialog-button {
-        // background-color: #f80;
-        // color: #f80;
-        @if $scale == "default" {
-            padding: 2px $container_padding * 2;
-        } @else {
-            padding: 4px $container_padding * 4;
-        }
+  .modal-dialog-button-box {
+    @if $scale == 'default' {
+      spacing: $container_padding / 2;
+    } @else {
+      spacing: $container_padding;
     }
+  }
 
-    // replaced in bottom
-    /* 
+  .modal-dialog-button {
+    // background-color: #f80;
+    // color: #f80;
+    @if $scale == 'default' {
+      padding: 2px $container_padding * 2;
+    } @else {
+      padding: 4px $container_padding * 4;
+    }
+  }
+
+  // replaced in bottom
+  /* 
   .cancel-button,
   .switch-user-button,
   .login-dialog-session-list-button {
@@ -242,29 +268,38 @@
   }
   */
 
-    // .login-dialog-logo-bin { padding: $container_padding * 4 0; }
-    .login-dialog-logo-bin {
-        padding: $container_padding $container_padding;
-    }
-    .login-dialog-button-box {
-        spacing: $container_padding;
-    }
-    .login-dialog-message-hint {
-        padding-top: 0;
-        padding-bottom: $container_padding * 10;
-    }
-    // replaced in bottom
-    /* 
-    .login-dialog-user-selection-box { 
-      background-color: #f00;
-      // background-color: transparent;
-      // color: #f80;
-      padding: 0px 0px;
-    }
-    */
+  // replaced in bottom
+  /*
+  .login-dialog-logo-bin {
+    opacity: 0;
+    padding: $container_padding * 4 ;
+    visibility: hidden;
+    // display: none;
+  }
+  // password container 
+  .login-dialog-button-box {
+    background-color: #f0f;
+    spacing: $container_padding;
+  }
+  .login-dialog-message-hint {
+    background-color: #f80;
+    padding-top: 0;
+    padding-bottom: $container_padding * 10;
+  }
+  */
 
-    // replaced in bottom
-    /*
+  // replaced in bottom
+  /* 
+  .login-dialog-user-selection-box { 
+    background-color: #f00;
+    // background-color: transparent;
+    // color: #f80;
+    padding: 0px 0px;
+  }
+  */
+
+  // replaced in bottom
+  /*
   .login-dialog-not-listed-label {
     padding-left: 4px;
   }
@@ -280,11 +315,16 @@
   }
   */
 
-    .login-dialog-user-list-view {
-        -st-vfade-offset: if($scale == "default", 1em, 2em);
-    }
-    // replaced in bottom
-    /*
+  
+  // not replaced
+  /*
+  .login-dialog-user-list-view {
+    -st-vfade-offset: if($scale == 'default', 1em, 2em);
+  }
+  */
+
+  // replaced in bottom
+  /*
   .login-dialog-user-list-view { -st-vfade-offset: if($scale == 'default', 1em, 2em); }
   .login-dialog-user-list {
     @if $scale == 'default' {
@@ -315,8 +355,8 @@
   }
   */
 
-    // on user list item
-    /*
+  // on user list item
+  /*
   .user-widget.horizontal
   .user-widget-label {
     @if $scale == 'default' {
@@ -333,7 +373,7 @@
   */
 
     // under user face
-    /*
+  /*
   .user-widget.vertical
   .user-widget-label {
     color: $bg_color;
@@ -350,128 +390,106 @@
   }
   */
 
-    // password filed container
-    .login-dialog-prompt-layout {
-        padding-top: if(
-            $scale == "default",
-            $container_padding * 4,
-            $container_padding * 8
-        );
-        padding-bottom: if(
-            $scale == "default",
-            $container_padding * 2,
-            $container_padding * 4
-        );
-        spacing: if($scale == "default", $base_spacing * 2, $base_spacing * 4);
-        width: if($scale == "default", 24em, 42em);
+  // replaced in bottom
+  /*
+  // password filed container
+  .login-dialog-prompt-layout {
+    padding-top: if($scale == 'default', $container_padding * 4, $container_padding * 8);
+    padding-bottom: if($scale == 'default', $container_padding * 2, $container_padding * 4);
+    spacing: if($scale == 'default', $base_spacing * 2, $base_spacing * 4);
+    width: if($scale == 'default', 24em, 42em);
+  }
+
+  // password field
+  .login-dialog-prompt-entry {
+    border-radius: $bt_radius;
+    height: if($scale == 'default', 2em, 3em);
+  }
+
+  .login-dialog-prompt-label {
+    @if $scale == 'default' {
+      @include fontsize($base_font_size + 1);
+    } @else {
+      @include fontsize($base_font_size * 2 + 2);
     }
 
-    // password field
-    .login-dialog-prompt-entry {
-        border-radius: $bt_radius;
-        height: if($scale == "default", 2em, 3em);
-    }
-
-    .login-dialog-prompt-label {
-        @if $scale == "default" {
-            @include fontsize($base_font_size + 1);
-        } @else {
-            @include fontsize($base_font_size * 2 + 2);
-        }
-
-        padding-top: if($scale == "default", 1em, 2em);
-    }
+    padding-top: if($scale == 'default', 1em, 2em);
+  }
+  */
 }
 
 .login-dialog,
 .unlock-dialog {
+  border: none;
+  background-color: transparent;
+
+  StEntry {
+    color: $fg_color;
+    // input-filed (username, password) caret color
+    caret-color: $fg_color;
+    background-color: $bg_color;
+    border-radius: $circular_radius;
+
+    //input-filed place-holder-text (username, password) color
+    StLabel.hint-text {
+      color: $fg_color;
+    }
+  }
+
+  .modal-dialog-button {
+    background-color: rgb(0, 255, 132);
     border: none;
-    background-color: transparent;
+    @include button(flat-normal, $tc: $light_fg_color);
+    &:hover, &:focus { @include button(flat-hover, $tc: $light_fg_color); }
+    &:active { @include button(flat-active, $tc: $light_fg_color); }
+    &:insensitive { @include button(flat-insensitive, $tc: $light_disabled_fg_color); }
 
-    StEntry {
-        selection-background-color: transparent;
-        selected-background-color: transparent;
-        selected-color: white;
-        border-radius: $circular_radius;
-        // caret-color: $light_fg_color;
-        // input-filed place-holder-text (username, password) caret color
-        caret-color: $fg_color;
-
-        color: $fg_color;
-        // background-color: rgba($bg_color, $higher_opacity);
-        background-color: $bg_color;
-
-        //input-filed place-holder-text (username, password) color
-        StLabel.hint-text {
-            color: $fg_color;
-        }
+    &:default {
+      @include button(normal, $tc: $light_fg_color);
+      &:hover, &:focus { @include button(hover, $tc: $light_fg_color); }
+      &:active { @include button(active, $tc: $light_fg_color); }
+      &:insensitive { @include button(insensitive, $tc: $light_disabled_fg_color); }
     }
-
-    .modal-dialog-button {
-        background-color: rgb(0, 255, 132);
-        border: none;
-        @include button(flat-normal, $tc: $light_fg_color);
-        &:hover,
-        &:focus {
-            @include button(flat-hover, $tc: $light_fg_color);
-        }
-        &:active {
-            @include button(flat-active, $tc: $light_fg_color);
-        }
-        &:insensitive {
-            @include button(flat-insensitive, $tc: $light_disabled_fg_color);
-        }
-
-        &:default {
-            @include button(normal, $tc: $light_fg_color);
-            &:hover,
-            &:focus {
-                @include button(hover, $tc: $light_fg_color);
-            }
-            &:active {
-                @include button(active, $tc: $light_fg_color);
-            }
-            &:insensitive {
-                @include button(insensitive, $tc: $light_disabled_fg_color);
-            }
-        }
-    }
+  }
 }
 
 // user name
 .user-widget-label {
-    color: $bg_color;
+  color: $bg_color;
 }
 
 .login-dialog-banner {
-    // color: #409b32;
-    color: $light_alt_fg_color;
+  color: $bg_color;
 }
 
 .login-dialog-message {
-    size: 32px;
-    text-align: center;
+  size: 32px;
+  text-align: center;
+  color: $bg_color;
 }
 
 .login-dialog-message-warning {
-    // color: $warning_color;
-    color: $bg_color;
+  font-size: 12px;
+  // color: $warning_color;
+  color: $bg_color;
 }
 
-// user list + not listed label
-.login-dialog-user-selection-box {
-    background-color: transparent;
-    padding: 0px;
+// user list + not listed label container
+.login-dialog-user-selection-box { 
+  background-color: transparent;
+  spacing: $base_spacing * 4;
 }
 
-// user selection box - not listed label
+// (users selections boxes - not listed label) container
 .login-dialog-user-list {
-    background-color: transparent;
-    spacing: $base_spacing * 8;
-    // padding: 0px; // must be 0 to avoid issues in mouse clicking
-    width: 32em;
-    // replaced in bottom
-    /*
+  background-color: transparent;
+  // background-color: #f0f;
+  spacing: $base_spacing * 4;
+  padding: 0px; // must be 0 to avoid issues in mouse clicking
+  width: 32em;
+
+  // replaced in bottom
+  /*
   &:expanded
   .login-dialog-user-list-item:selected { 
     background-color: $light_divider_color;
@@ -492,32 +510,35 @@
   */
 }
 
+// wrapper container of (userface + username) container
 .login-dialog-user-list-item {
-    height: 8em;
-    border-radius: $bt_radius;
-    background-color: transparent;
+  // height: 6em; should not be filled so it fill the container
 
-    // &:focus {
-    //   background-color: $bg_color;
-    //   background-color: if($variant == 'light', rgba(black, 0.9), rgba(white, 0.3)) !important;
-    // }
+  padding: $base_padding * 4;
+  border-radius: $bt_radius;
+  background-color: transparent;
 
-    &:focus,
-    &:hover,
-    &:focus:hover {
-        // background-color: $divider_color !important;
-        background-color: rgba($bg_color, $lower_opacity);
-    }
+  // &:focus {
+  //   // background-color: if($variant == 'light', rgba(black, 0.9), rgba(white, 0.3)) !important;
+  //   background-color: rgba($bg_color, $lower_opacity);
+  // }
 
-    &:active,
-    &:focus:active {
-        // background-color: rgba($bg_color, $higher_opacity);
-        background-color: transparent;
-    }
+  &:focus,
+  &:hover,
+  &:focus:hover {
+    // background-color: $divider_color !important;
+    background-color: rgba($bg_color, $lower_opacity);
+  }
 
-    .login-dialog-timed-login-indicator {
-        background-color: $bg_color !important;
-    }
+  &:active,
+  &:focus:active {
+    // background-color: rgba($bg_color, $higher_opacity);
+    background-color: rgba($bg_color, $middle_opacity);
+  }
+
+  .login-dialog-timed-login-indicator {
+    background-color: $bg_color !important;
+  }
 }
 
 // // username in users list
@@ -536,93 +557,143 @@
 //   font-weight: 800;
 // }
 
-.user-widget.horizontal .user-widget-label {
-    // padding-left: if($scale == 'default', $container_padding * 1, $container_padding * 4);
+// (userface + username) container
+.user-widget.horizontal{
+  // width: 100em; // should not specify a width so it fill the contianer automaitically
+  background-color: transparent; // should be transparent for no issues
+  padding: 0px; // should be 0 for no issues
+  spacing: $base_spacing * 4;
+  // padding-left: $base_padding * 4;
+}
 
-    font-weight: 600;
-    @if $scale == "default" {
-        @include fontsize($base_font_size + 8);
+.user-widget.horizontal
+.user-widget-label {
+  font-size: 24pt;
+  font-weight: 600;
+  // background-color: transparent;
+  // background-color: #f00;
+  /*
+    @if $scale == 'default' {
+      @include fontsize($base_font_size + 8);
     } @else {
-        @include fontsize($base_font_size + 12);
+      @include fontsize($base_font_size + 12);
     }
-
-    // &:ltr { padding-left: if($scale == 'default', $container_padding * 2, $container_padding * 4); text-align: left; }
-    // &:rtl { padding-right: if($scale == 'default', $container_padding * 2, $container_padding * 4); text-align: right; }
+  */
+  // padding-left: if($scale == 'default', $container_padding * 1, $container_padding * 4);
+  // &:ltr { padding-left: if($scale == 'default', $container_padding * 2, $container_padding * 4); text-align: left; }
+  // &:rtl { padding-right: if($scale == 'default', $container_padding * 2, $container_padding * 4); text-align: right; }
 }
 
-.login-dialog-not-listed-label {
-    .login-dialog-not-listed-button:focus &,
-    .login-dialog-not-listed-button:hover & {
-        color: $bg_color;
-    }
-}
+// .login-dialog-not-listed-label {
+//   .login-dialog-not-listed-button:focus &,
+//   .login-dialog-not-listed-button:hover & {
+//     color: $bg_color;
+//   }
+// }
 
 .login-dialog-not-listed-label {
-    font-weight: normal;
-    // color: $light_alt_fg_color;
+  font-weight: 600;
+  // color: $light_alt_fg_color;
+  color: rgba($bg_color, $higher_opacity);
+  padding-left: 4px;
+  // padding-top: 1em;
+  font-size: 12pt;
+
+  .login-dialog-not-listed-button:focus &,
+  .login-dialog-not-listed-button:hover & {
     color: $bg_color;
-    padding-left: 4px;
-    font-size: 1em;
-    padding-top: 1em;
+  }
 
-    // &:hover { color: $light_alt_fg_color; }
-    &:hover {
-        color: #f00;
-    }
-    // &:focus { background-color: light_divider_color; }
-    &:focus {
-        background-color: #f0f;
-    }
+  // didn't find any utility
+  // &:hover { color: $light_alt_fg_color; }
+  // &:focus { background-color: light_divider_color; }
 }
 
 .login-dialog-prompt-label {
-    color: $bg_color;
+  color: $bg_color;
+}
+
+// (userface + username) container
+.user-widget.vertical{
+  text-align: center;
+  background-color: transparent;
+  // spacing: 0px;
+  spacing: $base_spacing * 2;
+  margin: $base_spacing * 4;
 }
 
 // under user face
-.user-widget.vertical .user-widget-label {
-    @if $scale == "default" {
-        @include fontsize($base_font_size + 20);
-    } @else {
-        @include fontsize($base_font_size + 24);
-    }
+.user-widget.vertical
+.user-widget-label {
+  font-size: 36pt;
+  font-weight: 800;
+  // font-size: 64pt;
+  // @if $scale == 'default' {
+  //   @include fontsize($base_font_size + 16);
+  // } @else {
+  //   @include fontsize($base_font_size + 20);
+  // }
 
-    // padding-top: if($scale == 'default', $base_padding * 2.5, $base_padding * 5);
-    padding-top: $base_padding;
-    // padding-bottom: if($scale == 'default', $base_padding * 3.5, $base_padding * 7);
-    padding-bottom: $base_padding;
+  // padding-top: if($scale == 'default', $base_padding * 2.5, $base_padding * 5);
+  // padding-top: 0px;
+  // padding-bottom: if($scale == 'default', $base_padding * 3.5, $base_padding * 7);
+  // padding-bottom: $base_padding * 20;
 }
 
-.user-widget.vertical {
-    // width: 1em;
-    text-align: center;
-    font-weight: 700;
-    background-color: $fg-color;
-    // background-color: transparent;
+// (userface + username + password prompt + lockcaps + warning message) container
+.login-dialog-prompt-layout {
+  width: 24em;
+  // padding: 128px;
+  spacing: $base_spacing * 2;
+  padding: $base_padding * 4;
+  background-color: transparent;
+  // background-color: #f00;
 }
 
-.user-widget.horizontal {
-    // width: 32em;
-    // font-weight: 400;
-    // background-color: #f0f;
-    background-color: transparent; // must be transparent for no issues
-    spacing: $base_spacing * 4;
-    padding: 0px; // must be 0 for no issues
+// password prompt
+.login-dialog-prompt-entry {
+  border-radius: $bt_radius;
+  height: 2em;
+  // background-color: #00f; // it is shown only in annimation
+  // padding: $base_padding * 50;
+}
+
+.login-dialog-prompt-label {
+  @include fontsize($base_font_size + 1px);
+  padding-top: 1em;
 }
 
 .cancel-button,
 .switch-user-button,
 .login-dialog-session-list-button {
-    border-radius: $circular_radius;
-    border: none;
-    color: $fg_color;
-    background-color: $bg_color;
+  border-radius: $circular_radius;
+  border: none;
+  color: $fg_color;
+  background-color: $bg_color;
 
-    width: $base_icon_size * 2 !important;
-    height: $base_icon_size * 2 !important;
-    padding: 0 !important;
+  width: $base_icon_size * 2 !important;
+  height: $base_icon_size * 2 !important;
+  padding: 0 !important;
 
-    StIcon {
-        icon-size: $base_icon_size !important;
-    }
+  StIcon {
+    icon-size: $base_icon_size !important;
+  }
+}
+
+// (cancel buttom + passwrod + load ) container
+.login-dialog-button-box {
+  background-color: transparent;
+  spacing: $container_padding;
+}
+
+// fedora logo contianer
+.login-dialog-logo-bin {
+  background-color: transparent;
+  // move the logo out of the screen
+  padding: -64px 0;
+}
+
+.login-dialog-message-hint {
+  padding-top: 0;
+  padding-bottom: $container_padding * 3;
 }
