@@ -1,34 +1,38 @@
 /* Screen Shield */
 
 .unlock-dialog-clock {
-  color: white;
-  font-weight: 300;
+  // background-color: #f00;
+  background-color: transparent;
+  color: $bg_color;
+  font-weight: 800;
   text-align: center;
-  spacing: 24px;
-  padding-bottom: 2.5em;
+  spacing: $base_spacing * 4;
+  padding: $base_padding * 8;
 }
 
 .unlock-dialog-clock-time {
-  font-size: 64pt;
-  padding-top: 42px;
+  font-size: 72pt;
+  padding-top: 0px;
   font-feature-settings: "tnum";
 }
 
 .unlock-dialog-clock-date {
-  font-size: 16pt;
-  font-weight: normal;
+  font-size: 22pt;
+  font-weight: 700;
 }
 
 .unlock-dialog-clock-hint {
-  font-weight: normal;
-  padding-top: 48px;
+  font-size: 12pt;
+  font-weight: 500;
+  padding-top: $base_padding * 2;
 }
 
 .unlock-dialog-notifications-container {
-  margin: 12px 0;
-  spacing: 6px;
-  width: 23em;
+  margin: 8px;
+  spacing: 8px;
+  width: 24em;
   background-color: transparent;
+
 
   .summary-notification-stack-scrollview {
     padding-top: 0;
@@ -37,38 +41,40 @@
 
   .notification,
   .unlock-dialog-notification-source {
-    padding: 12px 6px;
+    padding: 8px 8px;
     border: none;
-    background-color: $dark_bg_color;
-    color: $light_fg_color;
+    background-color: $notifications_bg;
     border-radius: $bt_radius;
 
-    &.critical { background-color: $alt_dark_bg_color; }
+    &.critical {
+      background-color: $notifications_bg;
+    }
   }
 }
 
 .unlock-dialog-notification-label {
-  padding: 0px 0px 0px 12px;
+  color: $notifications_fg;
+  padding: 8px;
+  // padding: 0px 0px 0px 12px;
 }
 
 .unlock-dialog-notification-count-text {
+  color: $notifications_fg;
+  background-color: transparent;
   weight: bold;
   padding: 0 6px;
-  color: white;
-  background-color: $primary_color;
   border-radius: 99px;
-  margin-right: 12px;
+  margin-right: 16px;
 }
 
 .screen-shield-background { //just the shadow, really
-  background: black;
-  box-shadow: 0 2px 3px 0 rgba(black, 0.15);
+  box-shadow: 0 2px 3px 0 rgba(rgb(0, 0, 0), 0.15);
 }
 
 #unlockDialogNotifications {
   StButton#vhandle, StButton#hhandle {
-    background-color: transparentize($bg_color,0.7);
-    &:hover, &:focus { background-color: transparentize($bg_color, 0.5); }
+    background-color: transparentize($notifications_bg, 0.7);
+    &:hover, &:focus { background-color: transparentize($notifications_bg, 0.5); }
 
     @if $shell_version == 'old' {
       &:active { background-color: transparentize($selected_bg_color, 0.5); }
