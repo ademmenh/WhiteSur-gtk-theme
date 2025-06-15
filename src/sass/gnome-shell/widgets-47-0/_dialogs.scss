@@ -1,30 +1,43 @@
 /* Modal Dialogs */
 
-%theme_dialogs {
+%dialog {
+  color: $text_color;
   background-color: $dialog_bg_color;
-  border-radius: $modal_radius + $base_padding;
-  border: solid rgba(black, 0.75);
-  border-width: if($variant=='light', 0, 1px);
-  box-shadow: 0 3px 6px 0 rgba(black, if($variant=='light', 0.25, 0.35));
+  width: 32em;
+  border: none !important;
+  padding: $base_padding * 4;
+  border-radius: $wm_radius * 2;
 }
 
-%last_dialog_button {
-  color: white !important;
-  background-color: $primary_color;
+%dialog_button {
+  // color: white !important;
+  font-weight: bold;
+  color: $text_color !important;
+  // background-color: $primary_color;
+  background-color: transparent;
   background-gradient-direction: none !important;
+  min-height: 36px;
+  padding: 0 $base_padding * 2;
+  margin: 0;
+  border: none !important;
+  border-radius: $bt_radius;
 
   &:hover {
-    color: white !important;
+    color: $text_color !important;
     background-gradient-direction: none !important;
+    background-color: $divider_color;
+    /*
     @if $shell_version == 'old' {
       background-color: lighten($primary_color, 9%);
     } @else {
       background-color: st-lighten($primary_color, 9%);
     }
+    */
   }
 
+  &:focus,
   &:active {
-    color: white !important;
+    color: $light_color !important;
     background-gradient-direction: none !important;
     @if $shell_version == 'old' {
       background-color: darken($primary_color, 5%);
@@ -35,113 +48,58 @@
 
   &:insensitive {
     background-gradient-direction: none !important;
+    color: $grey_color !important;
+    color: transparentize($text_color, 0.6) !important;
+    // color: transparentize($primary_color, 0.65) !important;
+    /*
     @if $shell_version == 'old' {
       background-color: transparentize($primary_color, 0.9);
-      color: transparentize($primary_color, 0.65) !important;
     } @else {
       background-color: st-transparentize($primary_color, 0.9);
-      color: st-transparentize($primary_color, 0.65) !important;
     }
+    */
   }
 }
 
 // modal dialog
 .modal-dialog {
-  color: $fg_color;
-  padding: $base_padding * 3;
-  @extend %theme_dialogs;
+  @extend %dialog;
 
   .modal-dialog-content-box {
-    padding: 16px 32px 6px;
-    spacing: $base_padding * 3;
-    max-width: 28em;
+    padding: $base_padding * 4;
+    spacing: $base_padding * 4;
   }
 
   .modal-dialog-button-box {
-    padding-top: $base_padding;
-    spacing: $base_padding;
+    padding: $base_padding * 4;
+    spacing: $base_padding * 4;
   }
 
   .modal-dialog-button,
   .modal-dialog-linked-button {
-    min-height: 40px;
-    padding: 0 16px;
-    margin: 0;
-    border: none !important;
-    border-radius: $modal_radius - $base_padding * 2;
-    font-weight: bold;
-
-    @include button(normal);
-    &:hover { @include button(hover); }
-    &:active { @include button(active); }
-    &:checked { @include button(checked); }
-    &:insensitive { @include button(insensitive); }
-    &:focus { @include button(focus); }
-
-    &:last-child {
-      @extend %last_dialog_button;
-    }
+    @extend %dialog_button;
   }
 }
 
 // End Session Dialog
 .end-session-dialog {
-  width: 28em;
-  // border: none;
+  @extend %dialog;
 
   .end-session-dialog-battery-warning,
   .dialog-list-title {
+    @extend %description;
+    margin-bottom: 32px;
     color: $warning_color;
-  }
-}
-
-// Message Dialog
-.message-dialog-content {
-  spacing: 18px;
-
-  .message-dialog-title {
-    text-align: center;
-    @extend %title_2;
-
-    &.lightweight {
-      @extend %title_4;
-    }
-  }
-
-  .message-dialog-description { text-align: center; }
-}
-
-// Dialog List
-.dialog-list {
-  spacing: 18px;
-
-  .dialog-list-title {
-    text-align: center;
-    @extend %heading;
-  }
-
-  .dialog-list-scrollview { max-height: 200px; }
-  .dialog-list-box {
-    spacing: 1em;
-
-    .dialog-list-item {
-      spacing: 1em;
-
-      .dialog-list-item-title { font-weight: bold; }
-      .dialog-list-item-description {
-        color: $alt_fg_color;
-        @extend %caption;
-      }
-    }
   }
 }
 
 // Run Dialog
 .run-dialog {
-  width: 24em;
+  @extend %dialog;
 
   .run-dialog-entry {
     padding: $base_padding * 2 $base_padding * 1.5;
+    border-radius: $bt_radius;
   }
 
   .run-dialog-description {
@@ -153,9 +111,61 @@
 
 // Password or Authentication Dialog
 .prompt-dialog {
-  //this is the width of the entire modal popup
-  width: 24em;
-  // border: none;
+  @extend %dialog;
+}
+
+
+// Dialog List
+.dialog-list {
+  spacing: $base_spacing;
+  @extend %dialog;
+
+  .dialog-list-title {
+    text-align: center;
+    @extend %title;
+  }
+
+  .dialog-list-scrollview {
+    max-height: 200px;
+  }
+
+  .dialog-list-box {
+    spacing: 1em;
+
+    .dialog-list-item {
+      spacing: 1em;
+
+      .dialog-list-item-title {
+        font-weight: bold;
+      }
+
+      .dialog-list-item-description {
+        // color: $alt_fg_color;
+        color: $text_color;
+        @extend %small_description;
+      }
+    }
+  }
+}
+
+// Message Dialog
+.message-dialog-content {
+  spacing: $base_spacing * 8;
+
+  .message-dialog-title {
+    text-align: center;
+    // @extend %title_2;
+    @extend %title;
+
+    &.lightweight {
+      @extend %small_title;
+    }
+  }
+
+  .message-dialog-description {
+    text-align: center;
+    @extend %description !optional;
+  }
 }
 
 .prompt-dialog-password-grid {
@@ -166,6 +176,7 @@
     width: auto;
 
     // 4px (spacing) + 16px (spinner-width)
+    // &:ltr { margin-left: 20px; }
     &:ltr { margin-left: 20px; }
     &:rtl { margin-right: 20px; }
   }
@@ -176,15 +187,18 @@
 }
 
 .prompt-dialog-password-entry {
-  width: 20em;
+  width: 24em;
   padding: $base_padding * 2 $base_padding * 1.5;
+  color: $text_color;
+  background-color: $grey_color;
+  border-radius: $bt_radius;
 }
 
 .prompt-dialog-error-label,
 .prompt-dialog-info-label,
 .prompt-dialog-null-label {
   text-align: center;
-  @extend %caption;
+  @extend %description;
 }
 
 .prompt-dialog-error-label {
@@ -193,40 +207,49 @@
 
 .prompt-dialog-info-label,
 .prompt-dialog-null-label {
-  color: $hint_fg_color;
+  color: $text_color;
 }
 
 // Polkit Dialog
 .polkit-dialog-user-layout {
   text-align: center;
-  spacing: 8px;
-  margin-bottom: 6px;
+  // spacing: 0px !important;
+  // margin-bottom: 0px !important;
+  @extend %dialog;
 
   .polkit-dialog-user-label,
   .polkit-dialog-user-root-label {
-    @extend %title_4;
-  }
-
-  .polkit-dialog-user-root-label {
-    color: $warning_color;
+    @extend %title;
   }
 }
 
 // Audio selection dialog
 .audio-device-selection-dialog {
-  .modal-dialog-content-box { margin-bottom: 28px; }
-  .audio-selection-box { spacing: 20px; }
+  @extend %dialog;
+
+  .modal-dialog-content-box {
+    margin-bottom: 28px;
+  }
+
+  .audio-selection-box {
+    spacing: 20px;
+  }
 }
 
 .audio-selection-device {
   min-width: 24em;
-  border: 1px solid $borders_color;
+  // border: 1px solid $borders_color;
+  border: none;
   border-radius: $bt_radius;
 
-  &:hover, &:focus { background-color: $visit_color; }
+  &:hover, &:focus {
+    color: $light_color;
+    background-color: $divider_color;
+  }
+
   &:active {
     background-color: $selected_bg_color;
-    color: $selected_fg_color;
+    color: $light_color;
   }
 }
 
