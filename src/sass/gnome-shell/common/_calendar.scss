@@ -1,31 +1,34 @@
 /* Date/Time Menu */
 
-$popover_bubble_bg: if($variant == 'light', rgba(white, 0.95), rgba(lighten($base_color, 8%), 0.95));
-
 %popover_bubble {
-  color: $alt_fg_color;
-  background-color: $popover_bubble_bg;
-  border-radius: $bt_radius + $base_padding * 1.5 !important;
+  // color: $alt_fg_color;
+  color: $reversed_text_color;
+  // background-color: $popover_bubble_bg;
+  background-color: $panel_bg;
   border: none;
-  box-shadow: 0 1px 2px rgba(black, 0.02) !important;
+  // border-radius: $bt_radius + $base_padding * 1.5 !important;
+  border-radius: $wm_radius;
   text-shadow: none;
+  // box-shadow: 0 1px 2px rgba(black, 0.9) !important;
 
   &:hover, &:focus {
-    color: $fg_color;
-    background-color: if($variant == 'light', rgba($popover_bubble_bg, 1), rgba(lighten($popover_bubble_bg, 5%), 1));
-    box-shadow: 0 1px 3px rgba(black, 0.05) !important;
+    color: $reversed_text_color;
+    // background-color: if($variant == 'light', rgba($popover_bubble_bg, 1), rgba(lighten($popover_bubble_bg, 5%), 1));
+    background-color: $panel_divider;
+    // box-shadow: 0 1px 3px rgba(black, 0.05) !important;
   }
 
   &:active {
-    color: $fg_color;
-    background-color: if($variant == 'light', darken($popover_bubble_bg, 1%), lighten($popover_bubble_bg, 3%));
-    box-shadow: none !important;
+    color: $reversed_text_color;
+    // background-color: if($variant == 'light', darken($popover_bubble_bg, 1%), lighten($popover_bubble_bg, 3%));
+    background-color: $panel_track;
+    // box-shadow: none !important;
   }
 }
 
 // overall menu
 #calendarArea {
-  padding: $base_margin 0;
+  padding: 0px;
 }
 
 .datemenu-popover {
@@ -57,35 +60,40 @@ $popover_bubble_bg: if($variant == 'light', rgba(white, 0.95), rgba(lighten($bas
 }
 
 /* today button (the date) */
+// calendar day buttons
 .datemenu-today-button {
   border: none;
   box-shadow: none;
   background: none;
-  padding: $base_padding $base_padding * 2;
-  margin: $base_margin $base_margin * 2;
+  padding: $base_padding $base_padding;
+  margin: $base_margin $base_margin;
   text-shadow: none;
-  color: $alt_fg_color;
   border-radius: $base_border_radius;
 
   &:hover, &:focus {
     color: $fg_color;
-    background-color: if($variant == 'light', rgba($popover_bubble_bg, 1), rgba(lighten($popover_bubble_bg, 5%), 1));
+    // background-color: if($variant == 'light', rgba($popover_bubble_bg, 1), rgba(lighten($popover_bubble_bg, 5%), 1));
+    background-color: $panel_divider;
   }
 
   &:active {
     color: $fg_color;
-    background-color: if($variant == 'light', darken($popover_bubble_bg, 1%), lighten($popover_bubble_bg, 3%));
+    // background-color: if($variant == 'light', darken($popover_bubble_bg, 1%), lighten($popover_bubble_bg, 3%));
+    background-color: $panel_track;
   }
 
   // weekday label
   .day-label {
-    font-weight: bold;
+    color: $fg_color;
+    @extend %title_4;
   }
 
   // date label
   .date-label {
-    @extend %title_2;
+    color: $fg_color;
+    @extend %title_4;
   }
+
 }
 
 /* Calendar */
@@ -273,14 +281,6 @@ $popover_bubble_bg: if($variant == 'light', rgba(white, 0.95), rgba(lighten($bas
   }
 }
 
-.world-clocks-button,
-.weather-button,
-.events-button {
-  @extend %popover_bubble;
-  padding: $base_padding * 3 !important;
-  margin: $base_padding $base_padding + $base_margin !important;
-}
-
 // Events
 .events-button {
   .events-box {
@@ -297,7 +297,7 @@ $popover_bubble_bg: if($variant == 'light', rgba(white, 0.95), rgba(lighten($bas
   .events-title,
   .events-section-title {
     @extend %heading;
-    color: $alt_fg_color;
+    color: $fg_color;
     text-shadow: none;
   }
 
@@ -322,7 +322,7 @@ $popover_bubble_bg: if($variant == 'light', rgba(white, 0.95), rgba(lighten($bas
   // title
   .world-clocks-header {
     @extend %heading;
-    color: $alt_fg_color;
+    // color: $alt_fg_color;
 
     // change style when no world clocks are configured
     &.no-world-clocks {
@@ -401,3 +401,14 @@ $popover_bubble_bg: if($variant == 'light', rgba(white, 0.95), rgba(lighten($bas
     font-weight: bold;
   }
 }
+
+
+.world-clocks-button,
+.weather-button,
+.events-button {
+  @extend %popover_bubble;
+  padding: $base_padding * 4 !important;
+  // margin: $base_padding $base_padding + $base_margin !important;
+  margin: 0px;
+}
+
