@@ -64,9 +64,12 @@
 
 // Caps-lock warning
 .caps-lock-warning-label {
+  font-size: 16px;
+  font-weight: normal;
   text-align: center;
-  padding-bottom: 8px;
-  color: $warning_color;
+  padding-bottom: $base_padding * 2;
+  // color: $warning_color;
+  color: $reversed_text_color;
   @extend %caption;
 }
 
