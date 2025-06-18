@@ -24,7 +24,7 @@
 // search overview container
 #searchResultsContent {
   max-width: 1024px;
-  spacing: $base_margin * 2;
+  spacing: $base_spacing * 2;
 }
 
 // search results sections "the boxes"
@@ -46,16 +46,18 @@
   padding: $base_padding * 3;
   border: none;
   box-shadow: none;
-  background: $light_divider_color;
+  // background: $light_divider_color;
+  background: $trans_bg_color;
   text-shadow: none;
-  color: $light_alt_fg_color;
+  // color: $light_alt_fg_color;
+  color: $text_color;
 }
 
 // "no results" text
 .search-statustext {
   font-size: 2em;
   font-weight: bold;
-  color: $light_hint_fg_color;
+  color: $text_color;
 }
 
 .grid-search-results {
@@ -78,7 +80,8 @@
     .list-search-provider-details {
       width: 120px;
       margin-top: 0;
-      color: $light_hint_fg_color;
+      // color: $light_hint_fg_color;
+      color: $text_color;
       // font-weight: bold;
     }
   }
@@ -92,6 +95,7 @@
 // search result listitem
 .list-search-result {
   @extend %search-section-content-item;
+
   // content
   .list-search-result-content {
     spacing: $base_padding;
@@ -104,5 +108,7 @@
   }
 
   // list item description
-  .list-search-result-description { color: $light_alt_fg_color; }
+  .list-search-result-description {
+    color: $primary_color;
+  }
 }
