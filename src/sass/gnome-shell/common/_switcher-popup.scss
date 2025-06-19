@@ -1,8 +1,8 @@
 /* App Switcher */
 
 .switcher-popup {
-  padding: 8px;
-  spacing: $base_spacing * 4;
+  padding: $base_padding;
+  spacing: $base_spacing;
 }
 
 // switcher onscreen panel
@@ -11,25 +11,28 @@
   border-radius: $bt_radius * 2 + $base_padding * 2;
 
   .item-box {
-    padding: 8px;
+    padding: $base_padding * 2;
     border-radius: $bt_radius * 2;
-    border: 1px solid transparent;
+    // border: 1px solid transparent;
     background-color: transparent;
     color: $fg_color;
 
     &:outlined {
       background-color: $divider_color;
-      color: $fg_color; // for Ubuntu session
+      // color: $fg_color; // for Ubuntu session
+      color: $text_color; // for Ubuntu session
     }
 
     &:selected {
       background-color: $primary_color;
-      color: $light_alt_fg_color;
+      color: $text_color;
     }
   }
 
   // window thumbnails
   .thumbnail-box {
+    // width: 24em;
+    // height: 24em;
     padding: 2px;
     spacing: $base_spacing;
   }
@@ -49,7 +52,7 @@
 }
 
 .switcher-arrow {
-  border-color: rgba(0,0,0,0);
+  // border-color: rgba(0,0,0,0);
   color: $hint_fg_color;
 
   &:highlighted {
@@ -66,5 +69,7 @@
 
 // Window cycler highlight
 .cycler-highlight {
+  // border: 5px solid $primary_color;
   border: 5px solid $primary_color;
+  // border: 5px solid #f00;
 }
