@@ -19,15 +19,40 @@ $app_folder_size: 720px;
 
 // items in the app grid and dash
 .overview-tile {
-  color: $light_alt_fg_color;
+  // color: $light_alt_fg_color;
+  color: $text_color;
   background-color: transparent;
 
-  &:focus { color: $light_fg_color; background-color: $light_divider_color; }
-  &:hover { color: $light_fg_color; background-color: $light_divider_color; }
-  &:active { color: $light_fg_color; background-color: $light_track_color; }
+  &:focus {
+    // color: $light_fg_color;
+    color: $text_color;
+    // background-color: $light_divider_color;
+    background-color: $divider_color;
+  }
+  &:hover {
+    // color: $light_fg_color; 
+    color: $text_color;
+    // background-color: $light_divider_color;
+    background-color: $divider_color;
+  }
+  &:active {
+    // color: $light_fg_color;
+    color: $text_color;
+    // background-color: $light_track_color;
+    background-color: $track_color;
+  }
   &:highlighted,&:selected,
-  &:checked { color: $light_fg_color; background-color: $light_track_color; }
-  &:insensitive { color: $light_alt_disabled_fg_color; background-color: transparent; }
+  &:checked {
+    // color: $light_fg_color;
+    color: $text_color;
+    // background-color: $light_track_color;
+    background-color: $track_color;
+  }
+  &:insensitive {
+    // color: $light_alt_disabled_fg_color;
+    color: $text_color;
+    background-color: transparent;
+  }
 
   // override the %tile style
   border-radius: $wm_radius * 1.5;
@@ -52,7 +77,7 @@ $app_folder_size: 720px;
   width: 5px;
   height: 5px;
   border-radius: 5px;
-  background-color: $light_alt_fg_color;
+  background-color: $light_color;
   margin-bottom: 0 !important;
   offset-y: 6px;
 
@@ -62,13 +87,15 @@ $app_folder_size: 720px;
 }
 
 .app-folder {
-  background-color: $light_divider_color;
+  // background-color: $light_divider_color;
+  // background-color: $trans_bg_color;
+  background-color: transparent;
 
-  &:focus { background-color: $light_divider_color; }
-  &:hover { background-color: rgba(white, 0.2); }
-  &:active { background-color: rgba(white, 0.3); }
+  &:focus { background-color: $divider_color; }
+  &:hover { background-color: $divider_color; }
+  &:active { background-color: $track_color; }
   &:highlighted,&:selected,
-  &:checked { background-color: rgba(white, 0.3); }
+  &:checked { background-color: $track_color; }
   &:insensitive { background-color: transparent; }
 }
 
@@ -87,18 +114,19 @@ $app_folder_size: 720px;
   }
 
   & .icon-button, & .page-navigation-arrow {
-    color: $light_alt_fg_color;
+    // color: $light_alt_fg_color;
+    color: $light_color;
     background-color: transparent;
     border: none !important;
 
     &:hover {
-      background-color: $light_divider_color;
-      color: $light_fg_color;
+      background-color: $track_color;
+      color: $light_color;
     }
 
     &:active {
-      background-color: $light_track_color;
-      color: $light_fg_color;
+      background-color: $track_color;
+      color: $light_color;
     }
   }
 }
@@ -109,20 +137,21 @@ $app_folder_size: 720px;
 
 // shutdown and other actions in the grid
 .system-action-icon {
-  background-color: $light_fill_color;
-  color: $light_fg_color;
+  background-color: $bg_color;
+  color: $light_color;
   border-radius: $circular_radius;
   icon-size: $app_icon_size * 0.5;
 }
 
 .page-navigation-hint {
-  width: if($laptop == 'true', 220px, 300px);
+  // width: if($laptop == 'true', 220px, 300px);
+  width: 300px;
 
   &.dnd {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 0, 0, 0.1);
   }
 
-  &.next:ltr,
+  &.next:ltr,$light_color
   &.previous:rtl {
     background-gradient-start: $light_divider_color;
     background-gradient-end: transparent;
@@ -145,23 +174,29 @@ $app_folder_size: 720px;
   width: 24px;
   height: 24px;
   border-radius: $circular_radius;
-  color: $light_alt_fg_color;
+  color: $light_color;
   background-color: transparent;
 
-  > StIcon { color: $light_fg_color; }
+  > StIcon { color: $light_color; }
 
   &:insensitive {
-    background-color: $light_fill_color;
-    color: $light_alt_disabled_fg_color;
+    // background-color: $light_fill_color;
+    background-color: $light_color;
+    // color: $light_alt_disabled_fg_color;
+    color: $grey_color;
   }
 
   &:hover {
-   background-color: $light_divider_color;
-   color: $light_fg_color;
+    //  background-color: $light_divider_color;
+    background-color: $divider_color;
+    //  color: $light_fg_color;
+    color: $light_color;
   }
 
   &:active {
-   background-color: $light_track_color;
-   color: $light_fg_color;
+    background-color: $track_color;
+    //  background-color: $light_track_color;
+    //  color: $light_fg_color;
+    color: $light_color;
   }
 }
