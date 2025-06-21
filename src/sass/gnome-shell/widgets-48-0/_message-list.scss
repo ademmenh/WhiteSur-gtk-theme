@@ -2,7 +2,7 @@
 // a.k.a. notifications in the menu
 
 .message-list {
-  width: 29em;
+  width: 24em;
   text-shadow: none;
   border: none;
   padding: 0 $base_margin;
@@ -43,6 +43,7 @@
   padding: $base_padding * 2;
   padding-bottom: $base_padding;
   spacing: $base_padding;
+  color: $fg_color;
   @extend %heading;
 
   .dnd-button {
@@ -67,12 +68,15 @@
 // message notification group
 .message-notification-group {
   spacing: $base_padding * 2;
+  background-color: transparent;
 
   .message-group-header {
     padding: $base_padding;
     .message-group-title {
       @extend %title_2;
       margin: 0 $base_margin;
+      color: $fg_color;
+      // color: #f80;
     }
   }
 
@@ -83,8 +87,14 @@
     background-color: transparentize($fg_color, 0.8);
     padding: 4px !important;
     border: 4px transparent solid;
-    &:hover { background-color: transparentize($fg_color, 0.7); }
-    &:active { background-color: transparentize($fg_color, 0.8); }
+    &:hover {
+      // background-color: transparentize($fg_color, 0.7);
+      background-color: $divider_color;
+    }
+    &:active {
+      // background-color: transparentize($fg_color, 0.8);
+      background-color: $track_color;
+    }
   }
 }
 
@@ -94,45 +104,52 @@ $card_bg_color: if($variant == 'light', mix(white, $bg_color, 95%), lighten($bas
   border-radius: $bt_radius + $base_padding * 1.5;
   padding: $base_padding;
   margin: $base_margin;
-  background-color: $card_bg_color;
-  box-shadow: 0 1px 2px 0 rgba(black, 0.02);
+  background-color: $bg_color;
+  // box-shadow: 0 1px 2px 0 rgba(black, 0.02);
+  // box-shadow: 0 1px 2px 0 rgba(rgb(255, 0, 0), 1);
   // bit of a hack here with border since we can't have double box-shadow
-  color: $alt_fg_color;
+  color: $fg_color;
 
   &:hover, &:focus {
     color: $fg_color;
-    background-color: if($variant == 'light', $card_bg_color, lighten($card_bg_color, 5%));
-    box-shadow: 0 1px 3px rgba(black, 0.05) !important;
+    // background-color: if($variant == 'light', $card_bg_color, lighten($card_bg_color, 5%));
+    background-color: $solid_bg_color;
+    // box-shadow: 0 1px 3px rgba(black, 0.05) !important;
   }
 
   &:active {
     color: $fg_color;
-    background-color: if($variant == 'light', darken($card_bg_color, 1%), lighten($card_bg_color, 3%));
-    box-shadow: none !important;
+    // background-color: if($variant == 'light', darken($card_bg_color, 1%), lighten($card_bg_color, 3%));
+    background-color: $solid_bg_color;
+    // box-shadow: none !important;
   }
 
   &:insensitive {
     color: $alt_disabled_fg_color;
-    background-color: rgba($card_bg_color, 0.5);
+    // background-color: rgba($card_bg_color, 0.5);
+    background-color: $solid_bg_color;
     box-shadow: none !important;
   }
 }
 
 // message bubbles
 .message {
-  border: 1px solid transparent;
+  // border: 1px solid transparent;
 
   .popup-menu & {
     @extend %card;
+    background-color: $solid_bg_color;
   }
 
   &:second-in-stack {
-    background-color: if($variant == 'light', darken($card_bg_color, 3%), darken($card_bg_color, 3%));
-    box-shadow: 0 1px 2px rgba(black, 0.05);
+    // background-color: if($variant == 'light', darken($card_bg_color, 3%), darken($card_bg_color, 3%));
+    background-color: $popover_bg_color;
+    // box-shadow: 0 1px 2px rgba(black, 0.05);
   }
 
   &:lower-in-stack {
-    background-color: if($variant == 'light', darken($card_bg_color, 6%), darken($card_bg_color, 6%));
+    // background-color: if($variant == 'light', darken($card_bg_color, 6%), darken($card_bg_color, 6%));
+    background-color: $popover_bg_color;
     box-shadow: none;
     border-color: transparent; // a not ideal workaround for light theme
   }
@@ -141,7 +158,7 @@ $card_bg_color: if($variant == 'light', mix(white, $bg_color, 95%), lighten($bas
   .message-header {
     padding: 0 $base_padding;
     spacing: $base_padding;
-    color: $disabled_fg_color;
+    color: $text_color;
 
     // remove side padding to accommodate the close button
     &:ltr { padding-right: 0; }
