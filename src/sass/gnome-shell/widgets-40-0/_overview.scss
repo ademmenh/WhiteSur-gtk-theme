@@ -1,9 +1,15 @@
-.controls-manager, .secondary-monitor-workspaces {
+.controls-manager,
+.secondary-monitor-workspaces {
+  // background-color: #8f0;
+  background-color: $solid_bg_color;
+  box-shadow: none;
   spacing: $base_spacing * 2;
 }
-
 #overviewGroup {
-  background-color: $solid_osd_bg_color;
+  // background-color: $solid_osd_bg_color;
+  // background-color: $solid_bg_color;
+  background-color: transparent;
+  box-shadow: none;
   // background-image: url("assets/background.png");
   // background-repeat: no-repeat;
   // background-size: cover;
