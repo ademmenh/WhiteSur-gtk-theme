@@ -1,12 +1,25 @@
-
+/*
 #unlockDialogNotifications {
+  max-height: 400px;
+
   StButton#vhandle, StButton#hhandle {
-    background-color: transparentize($bg_color, 0.7);
-    &:hover, &:focus { background-color: transparentize($bg_color, 0.5); }
+    // background-color: transparentize($bg_color, 0.7);
+    background-color: transparentize($bg_color, $higher_opacity);
+
+    &:hover, &:focus {
+      // background-color: transparentize($bg_color, $lower_opacity);
+      background-color: transparentize($primary_color, $higher_opacity);
+    }
+
     @if $shell_version == 'old' {
-      &:active { background-color: transparentize($primary_color, 0.5); }
+      &:active { 
+        background-color: transparentize($primary_color, $higher_opacity);
+      }
     } @else {
-      &:active { background-color: st-transparentize($primary_color, 0.5); }
+      &:active {
+        background-color: st-transparentize($primary_color, $higher_opacity);
+      }
     }
   }
 }
+*/
