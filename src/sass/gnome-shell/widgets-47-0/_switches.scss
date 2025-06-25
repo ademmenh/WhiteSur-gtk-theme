@@ -5,15 +5,18 @@
   height: 24px;
   border-radius: $circular_radius;
   background-gradient-direction: vertical;
-  background-gradient-start: rgba($fg_color, 0.25);
-  background-gradient-end: rgba($fg_color, 0.35);
-  background: rgba($fg_color, 0.25);
+  background-gradient-start: rgba($fg_color, 0.1);
+  background-gradient-end: rgba($fg_color, 0.1);
+  // background: rgba($fg_color, 0.25);
+  background: $grey_color;
 
+  /*
   &:hover {
     background-gradient-start: rgba($fg_color, 0.3);
     background-gradient-end: rgba($fg_color, 0.4);
     background: rgba($fg_color, 0.3);
   }
+  */
 
   StIcon {
     icon-size: 0;
@@ -23,18 +26,19 @@
     margin: 1px;
     width: 22px;
     height: 22px;
-    background: white;
+    background-color: $light_color;
     border-radius: $circular_radius;
-    box-shadow: 0 2px 4px transparentize(black, .9);
+    box-shadow: none;
     transition-duration: 100ms;
   }
 
   &:checked {
     background: $primary_color;
     color: $primary_color;
-    background-gradient-start: $primary_color;
+    // background-gradient-start: $primary_color;
     background-gradient-end: st-lighten($primary_color, 10%);
 
+    /*
     &:hover {
       background: $primary_color;
       color: $primary_color;
@@ -45,5 +49,6 @@
     .handle {
       background: white;
     }
+    */
   }
 }
