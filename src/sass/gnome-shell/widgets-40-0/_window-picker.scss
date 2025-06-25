@@ -1,15 +1,16 @@
 // Window picker
 .window-picker {
   // Space between window thumbnails
-  spacing: $base_spacing;
+  spacing: $base_spacing * 2;
 }
 
 // Window titles
 .window-caption {
-  color: $light_alt_fg_color;
-  background-color: rgba(black, 0.75);
+  color: $text_color;
+  // background-color: rgba(black, 0.75);
+  background-color: $bg_color;
   border-radius: $circular_radius;
-  padding: $base_padding $base_padding * 2;
+  // padding: $base_padding $base_padding * 2;
 }
 
 $window_close_button_size: 30px;
@@ -18,27 +19,30 @@ $window_close_button_padding: 3px;
 // Close button
 .window-close {
   background-color: rgba($destructive_color, 1);
-  color: white;
+  color: $light_color;
   border-radius: $circular_radius;
-  padding: $window_close_button_padding;
-  height: $window_close_button_size;
-  width: $window_close_button_size;
-  box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.5);
+  // padding: $window_close_button_padding;
+  padding: 0px;
+  // height: $window_close_button_size;
+  height: 32px;
+  width: 32px;
+  // box-shadow: -1px 1px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: none;
   transition-duration: 300ms;
   background-image: url("assets/window-close-symbolic.svg");
 
   StIcon {
-    color: white;
+    // color: white;
     icon-size: 1px; // Can't set to 0
   }
 
   &:hover {
-    color: white;
+    // color: white;
     background-color: lighten(rgba($destructive_color, 1), 6%);
   }
 
   &:active {
-    color: white;
+    // color: white;
     background-color: darken(rgba($destructive_color, 1), 6%);
   }
 }
@@ -47,5 +51,6 @@ $window_close_button_padding: 3px;
   // keep in sync with BACKGROUND_CORNER_RADIUS_PIXELS in workspace.js
   border-radius: 30px;
   background-color: $osd_bg_color;
-  box-shadow: 0 4px 16px 4px transparentize(darken($solid_osd_bg_color, 30%), 0.7);
+  // box-shadow: 0 4px 16px 4px transparentize(darken($solid_osd_bg_color, 30%), 0.7);
+  box-shadow: none;
 }
