@@ -1,7 +1,13 @@
 
 .popup-menu-item {
-  &:ltr { padding-right: $base_padding * 2; padding-left: $base_padding * 2; }
-  &:rtl { padding-left: $base_padding * 2; padding-right: $base_padding * 2; }
+  &:ltr {
+    padding-right: $base_padding * 2;
+    padding-left: $base_padding * 2;
+  }
+  &:rtl {
+    padding-left: $base_padding * 2;
+    padding-right: $base_padding * 2;
+  }
 }
 
 // separator

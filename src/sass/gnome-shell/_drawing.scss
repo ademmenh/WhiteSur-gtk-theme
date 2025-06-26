@@ -103,6 +103,7 @@
 }
 
 $entry_shell_bg: if($variant == 'light', rgba(black, 0.1), rgba(white, 0.1));
+// $entry_shell_bg: $bg_color
 
 @mixin entry($t, $fc: $primary_color, $tc: $fg_color, $c: $entry_shell_bg) {
 //
@@ -114,23 +115,23 @@ $entry_shell_bg: if($variant == 'light', rgba(black, 0.1), rgba(white, 0.1));
 
   @if $t == normal {
     background-color: $c;
-    border-radius: $circular_radius;
-    border: 2px solid transparent !important;
+    // border-radius: $circular_radius;
+    // border: 2px solid transparent !important;
     box-shadow: inset 0 0 0 1px transparent !important;
     outline: none;
   }
 
   @if $t == hover {
     box-shadow: inset 0 0 0 1px rgba($borders_color, 0.1) !important;
-    border: 2px solid transparent !important;
+    // border: 2px solid transparent !important;
   }
 
   @if $t == focus {
     box-shadow: inset 0 0 0 1px transparent !important;
     @if $shell_version == 'old' {
-      border: 2px solid lighten($fc, 15%) !important;
+      // border: 2px solid lighten($fc, 15%) !important;
     } @else {
-      border: 2px solid st-lighten($fc, 15%) !important;
+      // border: 2px solid st-lighten($fc, 15%) !important;
     }
   }
 
@@ -141,8 +142,8 @@ $entry_shell_bg: if($variant == 'light', rgba(black, 0.1), rgba(white, 0.1));
 
   @if $t == flat-normal {
     background-color: $c;
-    border-radius: $circular_radius;
-    border: none !important;
+    // border-radius: $circular_radius;
+    // border: none !important;
     box-shadow: none !important;
     color: $tc;
   }
@@ -154,13 +155,13 @@ $entry_shell_bg: if($variant == 'light', rgba(black, 0.1), rgba(white, 0.1));
   }
 
   @if $t == flat-focus {
-    border: none !important;
+    // border: none !important;
     background-color: rgba($c, 0.2);
     color: $tc;
   }
 
   @if $t == flat-insensitive {
-    border: none !important;
+    // border: none !important;
     background-color: rgba($c, 0.05);
     color: rgba($tc, 0.45);
   }

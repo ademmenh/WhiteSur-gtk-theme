@@ -37,6 +37,9 @@ $cakeisalie: "This stylesheet is generated, DO NOT EDIT";
   // $dialog_bg_color:                 if($variant == 'light', rgba($bg_color, $opacity), rgba($base_color, $opacity));
 }
 
+$selected_bg_color:                 if($scheme == 'nord', $nord_color_default, $theme_color_default);
+$primary_color:                     $selected_bg_color;
+
 $active_color:                      if($variant == 'light', rgba(black, 0.42), rgba(white, 0.42));
 $track_color:                       if($variant == 'light', rgba(black, 0.32), rgba(white, 0.32));
 $visit_color:                       if($variant == 'light', rgba(black, 0.24), rgba(white, 0.24));

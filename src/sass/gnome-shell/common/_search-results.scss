@@ -10,13 +10,13 @@
   &:focus,
   &:hover,
   &:selected {
-    background-color: $light_divider_color;
+    background-color: $reversed_divider_color;
     transition: none;
   }
 
   &:active,
   &:checked {
-    background-color: $light_track_color;
+    background-color: $reversed_track_color;
     transition-duration: 150ms;
   }
 }
@@ -35,7 +35,7 @@
   // separator
   .search-section-separator {
     height: 0;
-    background-color: $light_divider_color;
+    background-color: $reversed_divider_color;
   }
 }
 
@@ -47,7 +47,7 @@
   border: none;
   box-shadow: none;
   // background: $light_divider_color;
-  background: $trans_bg_color;
+  background: $reversed_track_color;
   text-shadow: none;
   // color: $light_alt_fg_color;
   color: $text_color;

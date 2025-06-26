@@ -1,5 +1,4 @@
 /* Popovers/Menus */
-
 $popop_menuitem_radius: $po_radius - $base_padding - if($variant=='light', 0, 2px); // radius of the menu item, used in popovers
 
 //.the popover itself
@@ -17,6 +16,233 @@ $popop_menuitem_radius: $po_radius - $base_padding - if($variant=='light', 0, 2p
   -arrow-base: 0;
 }
 
+
+// container of the popover menu
+.popup-menu {
+  min-width: $small_width;
+
+  .popup-status-menu-item {
+    font-weight: normal;
+    color: rgb(138, 49, 64);
+  } //dunno what that is
+
+  &.panel-menu {
+    -boxpointer-gap: $base_margin; // distance from the panel
+    margin-bottom: 1.75em;
+  }
+
+  StEntry {
+    selection-background-color: $light_alt_fg_color;
+    selected-background-color: $light_alt_fg_color;
+    selected-color: $primary_color;
+    caret-color: $fg_color;
+
+    StLabel.hint-text {
+      // color: transparentize($fg_color, 0.3);
+      margin-left: 2px;
+    }
+  }
+}
+
+// popups (calender, language selector ...) container
+.popup-menu-content {
+  background-color: $popover_bg_color;
+  padding: $base_padding * 4;
+  margin: $base_margin;
+  border-radius: $po_radius;
+}
+
+// menu item, (language selection, accecibility, session selection, wifi selection, bluetooth selection)
+.popup-menu-item {
+  color: $text_color;
+  // color: #f00;
+  spacing: $base_spacing * 2;
+  padding: $base_padding;
+  text-shadow: none !important;
+  icon-shadow: none !important;
+  // border-radius: $popop_menuitem_radius !important;
+  border-radius: $bd_radius !important;
+  font-weight: normal;
+  transition: none;
+  // background-color: #f00;
+
+  &:active,
+  &.selected:active,
+  &:focus,
+  &:hover,
+  &:selected {
+    // color: $selected_fg_color !important;
+    color: $light_color;
+    background-color: $selected_bg_color !important;
+    transition-duration: 0ms !important;
+  }
+
+  // didn't find it's purpose
+  &:checked {
+    color: $light_color !important;
+    background-color: $selected_bg_color !important;
+    background-gradient-direction: none !important;
+    font-weight: normal;
+    // border-radius: $popop_menuitem_radius $popop_menuitem_radius 0 0 !important;
+    border-radius: $bd_radius !important;
+    border: none;
+    box-shadow: none;
+
+    &:active,
+    &:focus,
+    &:hover,
+    &:selected {
+      // color: $selected_fg_color !important;
+      color: $light_color !important;
+      // background-color: $selected_bg_color !important;
+      background-color: $selected_bg_color !important;
+      background-gradient-direction: none !important;
+    }
+
+    /*
+    &:active {
+      color: $selected_fg_color !important;
+      @if $shell_version == 'old' {
+        background-color: mix($fg_color, $selected_bg_color, 5%) !important;
+      } @else {
+        background-color: st-mix($fg_color, $selected_bg_color, 5%) !important;
+      }
+    }
+    */
+
+    &:insensitive {
+      color: $disabled_text_color !important;
+    }
+  }
+
+
+  // replaced
+  /*
+  &:active, &.selected:active {
+    color: $selected_fg_color !important;
+    @if $shell_version == 'old' {
+      background-color: mix($fg_color, $selected_bg_color, 5%) !important;
+    } @else {
+      background-color: st-mix($fg_color, $selected_bg_color, 5%) !important;
+    }
+  }
+  */
+
+  &:insensitive {
+    color: $disabled_text_color !important;
+  }
+  // &:insensitive { color: #f00 !important; }
+
+  // add margin to switches in menu items
+  .toggle-switch {
+    &:ltr { margin-left: $base_margin; }
+    &:rtl { margin-right: $base_margin; }
+  }
+}
+
+.popup-sub-menu {
+  background-color: $submenu_bg_color !important;
+  // border-radius: 0 0 $popop_menuitem_radius $popop_menuitem_radius !important;
+  border-radius: $bd_radius !important;
+  border: none;
+  box-shadow: none;
+
+  .popup-menu-item {
+    margin: 0;
+    // border-radius: $popop_menuitem_radius !important;
+    border-radius: $bd_radius !important;
+    background-color: transparent !important;
+
+    &:active,
+    &:focus,
+    &:hover,
+    &:selected {
+      color: $selected_fg_color !important;
+      background-color: $selected_bg_color !important;
+    }
+
+    // replaced
+    /*
+    &:active {
+      color: $selected_fg_color !important;
+      @if $shell_version == 'old' {
+        background-color: mix($fg_color, $selected_bg_color, 5%) !important;
+      } @else {
+        background-color: st-mix($fg_color, $selected_bg_color, 5%) !important;
+      }
+    }
+    */
+  }
+}
+
+.popup-ornamented-menu-item {
+  &:ltr { padding-left: $base_padding; }
+  &:rtl { padding-right: $base_padding; }
+}
+
+.popup-inactive-menu-item { //all icons and other graphical elements
+  color: $alt_fg_color !important;
+  // color: #f00 !important;
+
+  &:insensitive { color: $disabled_fg_color !important; }
+}
+
+// symbolic icons in popover
+.popup-menu-arrow,
+.popup-menu-icon {
+  color: $fg_color;
+  // color: $fg_color;
+  // color: #f00;
+  icon-size: $base_icon_size;
+  icon-shadow: none !important;
+}
+
+// container for radio and check boxes
+.popup-menu-ornament {
+  // icon-size: $scalable_icon_size !important;
+  icon-size: $scalable_icon_size !important;
+  width: $scalable_icon_size;
+}
+
+// desktop background menu
+.background-menu {
+  -boxpointer-gap: $base_margin;
+  -arrow-rise: 0px; // hide the beak on the menu
+}
+
+// system status popover menu
+.aggregate-menu {
+  min-width: 21em;
+  // background-color: #f00;
+
+  // lock screen, shutdown, etc. buttons
+  .popup-menu-icon {
+    padding: 0 !important;
+    -st-icon-style: symbolic;
+
+    &:ltr { margin-right: $base_margin * 2 !important; }
+    &:rtl { margin-left: $base_margin * 2 !important; }
+  }
+}
+
+// right-click app menu
+.app-menu,
+.app-well-menu {
+  max-width: 27.25em;
+}
+
+// Rename popup for app folders
+// didn't find any purpose
+.rename-folder-popup {
+  // color: #f00;
+  // background-color: #f0f;
+  .rename-folder-popup-item {
+    spacing: $base_spacing;
+    &:ltr, &:rtl { padding: 0 $base_padding * 2; }
+  }
+}
+
+/*
 @if $scale != 'default' {
   #lockDialogGroup .popup-menu,
   .login-screen .popup-menu { // FIXME: not use? how to set the popovers on login-screen?
@@ -64,183 +290,4 @@ $popop_menuitem_radius: $po_radius - $base_padding - if($variant=='light', 0, 2p
   .popup-menu-arrow,
   .popup-menu-icon { icon-size: $base_icon_size * 2; }
 }
-
-// container of the popover menu
-.popup-menu {
-  min-width: 12em;
-  color: $alt_fg_color;
-
-  //.popup-status-menu-item { font-weight: normal;  color: pink; } //dunno what that is
-  &.panel-menu {
-    -boxpointer-gap: $base_margin; // distance from the panel
-    margin-bottom: 1.75em;
-  }
-
-  StEntry {
-    selection-background-color: $light_alt_fg_color;
-    selected-background-color: $light_alt_fg_color;
-    selected-color: $primary_color;
-    caret-color: $fg_color;
-
-    StLabel.hint-text {
-      margin-left: 2px;
-      color: transparentize($fg_color, 0.3);
-    }
-  }
-}
-
-.popup-menu-content {
-  padding: $base_padding;
-  box-shadow: 0 5px 10px 0 rgba(black, 0.18);
-  margin: 4px 12px 17px 12px;
-  background-color: $popover_bg_color;
-  border-radius: $po_radius;
-  border: solid if($variant=='light', rgba(black, 0), rgba(black, 0.75));
-  border-width: if($variant=='light', 0, 1px);
-}
-
-.popup-menu-item {
-  spacing: $base_spacing;
-  padding: $base_padding * 1.5 $base_padding * 2;
-  color: $alt_fg_color;
-  text-shadow: none !important;
-  icon-shadow: none !important;
-  border-radius: $popop_menuitem_radius !important;
-  font-weight: normal;
-  transition: none;
-
-  &:checked {
-    font-weight: normal;
-    border-radius: $popop_menuitem_radius $popop_menuitem_radius 0 0 !important;
-    border: none;
-    box-shadow: none;
-    color: $alt_fg_color !important;
-    background-color: $submenu_bg_color !important;
-    background-gradient-direction: none !important;
-
-    &:focus, &:hover, &:selected {
-      color: $selected_fg_color !important;
-      background-color: $selected_bg_color !important;
-      background-gradient-direction: none !important;
-    }
-
-    &:active {
-      color: $selected_fg_color !important;
-      @if $shell_version == 'old' {
-        background-color: mix($fg_color, $selected_bg_color, 5%) !important;
-      } @else {
-        background-color: st-mix($fg_color, $selected_bg_color, 5%) !important;
-      }
-    }
-
-    &:insensitive { color: $disabled_fg_color !important; }
-  }
-
-  &:focus, &:hover, &:selected {
-    color: $selected_fg_color !important;
-    background-color: $selected_bg_color !important;
-    transition-duration: 0ms !important;
-  }
-
-  &:active, &.selected:active {
-    color: $selected_fg_color !important;
-    @if $shell_version == 'old' {
-      background-color: mix($fg_color, $selected_bg_color, 5%) !important;
-    } @else {
-      background-color: st-mix($fg_color, $selected_bg_color, 5%) !important;
-    }
-  }
-
-  &:insensitive { color: $disabled_fg_color !important; }
-
-  // add margin to switches in menu items
-  .toggle-switch {
-    &:ltr { margin-left: $base_margin; }
-    &:rtl { margin-right: $base_margin; }
-  }
-}
-
-.popup-sub-menu {
-  background-color: $submenu_bg_color !important;
-  border-radius: 0 0 $popop_menuitem_radius $popop_menuitem_radius !important;
-  border: none;
-  box-shadow: none;
-
-  .popup-menu-item {
-    margin: 0;
-    border-radius: $popop_menuitem_radius !important;
-    background-color: transparent !important;
-
-    &:focus, &:hover, &:selected {
-      color: $selected_fg_color !important;
-      background-color: $selected_bg_color !important;
-    }
-
-    &:active {
-      color: $selected_fg_color !important;
-      @if $shell_version == 'old' {
-        background-color: mix($fg_color, $selected_bg_color, 5%) !important;
-      } @else {
-        background-color: st-mix($fg_color, $selected_bg_color, 5%) !important;
-      }
-    }
-  }
-}
-
-.popup-ornamented-menu-item {
-  &:ltr { padding-left: $base_padding; }
-  &:rtl { padding-right: $base_padding; }
-}
-
-.popup-inactive-menu-item { //all icons and other graphical elements
-  color: $alt_fg_color !important;
-
-  &:insensitive { color: $disabled_fg_color !important; }
-}
-
-// symbolic icons in popover
-.popup-menu-arrow,
-.popup-menu-icon {
-  icon-size: $base_icon_size;
-  icon-shadow: none !important;
-}
-
-// container for radio and check boxes
-.popup-menu-ornament {
-  icon-size: $scalable_icon_size !important;
-  width: $scalable_icon_size;
-}
-
-// desktop background menu
-.background-menu {
-  -boxpointer-gap: $base_margin;
-  -arrow-rise: 0px; // hide the beak on the menu
-}
-
-// system status popover menu
-.aggregate-menu {
-  min-width: 21em;
-
-  // lock screen, shutdown, etc. buttons
-  .popup-menu-icon {
-    padding: 0 !important;
-    -st-icon-style: symbolic;
-
-    &:ltr { margin-right: $base_margin * 2 !important; }
-    &:rtl { margin-left: $base_margin * 2 !important; }
-  }
-}
-
-// right-click app menu
-.app-menu,
-.app-well-menu {
-  max-width: 27.25em;
-}
-
-// Rename popup for app folders
-.rename-folder-popup {
-  .rename-folder-popup-item {
-    spacing: $base_spacing;
-    &:ltr, &:rtl { padding: 0 $base_padding * 2; }
-  }
-}
+*/

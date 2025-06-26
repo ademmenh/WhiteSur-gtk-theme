@@ -1,16 +1,421 @@
-.controls-manager,
-.secondary-monitor-workspaces {
-  // background-color: #8f0;
-  background-color: $solid_bg_color;
-  box-shadow: none;
-  spacing: $base_spacing * 2;
+.quick-settings {
+  padding: $base_padding * 3 !important;
+  // padding: $base_padding * 40 !important;
+  // border-radius: 21px + $base_padding * 3 !important;
+  border-radius: $wm_radius * 2 !important;
+  margin-top: $base_margin * 2 !important;
+  background-color: $panel_bg;
+
+  .icon-button, .button {
+    padding: $base_padding * 1.75;
+
+    StIcon { icon-size: $scalable_icon_size; }
+  }
 }
-#overviewGroup {
-  // background-color: $solid_osd_bg_color;
-  // background-color: $solid_bg_color;
+
+.quick-settings-grid {
+  spacing-rows: $container_padding * 2;
+  spacing-columns: $container_padding * 2;
+}
+
+.quick-toggle, .quick-toggle-has-menu {
+  border-radius: $circular_radius;
+  min-width: 12em;
+  max-width: 12em;
+  min-height: $scalable_icon_size * 3;
+  // background-color: transparent;
+  border: none;
+}
+
+// button do not have menu
+.quick-toggle {
+  color: $text_color;
+  background-color: transparent !important;
+  // background-color: #f0f !important;
+
+  &:focus,
+  &:hover {
+    color: $text_color;
+    background-color: $divider_color !important;
+    // background-color: $trans_bg_color !important;
+  }
+
+  &:active {
+    color: $text_color;
+    background-color: $divider_color !important;
+  }
+
+  &:checked {
+    color: $light_color;
+    // background-color: $primary_color !important;
+    background-color: $selected_bg_color !important;
+    // color: $light_fg_color;
+    // color: $fg_color;
+
+    &:focus,
+    &:hover {
+      // color: $light_fg_color;
+      // color: $fg_color;
+      color: $light_color;
+      // color: $text_color;
+      @if $shell_version == 'old' {
+        background-color: mix($light_color, $primary_color, 6%) !important;
+      } @else {
+        background-color: st-mix($light_color, $primary_color, 6%) !important;
+      }
+    }
+
+    &:active {
+      // color: $text_color;
+      color: $light_color;
+      @if $shell_version == 'old' {
+        background-color: mix($light_color, $primary_color, 15%) !important;
+      } @else {
+        background-color: st-mix($light_color, $primary_color, 15%) !important;
+      }
+    }
+  }
+
+  & > StBoxLayout { spacing: $base_padding * 1.5; }
+
+  /* Move padding into the box; this is to allow menu arrows
+     to extend to the border */
+  &.button { padding: 0; }
+  & > StBoxLayout { padding: 0 $base_padding * 2; }
+  &:ltr > StBoxLayout { padding-left: $base_padding * 4; }
+  &:rtl > StBoxLayout { padding-right: $base_padding * 4; }
+
+  .quick-toggle-title {
+    @extend %heading;
+  }
+
+  .quick-toggle-subtitle {
+    @extend %caption;
+    font-weight: normal;
+  }
+
+  .quick-toggle-icon {
+    icon-size: $scalable_icon_size;
+  }
+}
+
+.quick-toggle-has-menu {
+    // min-width: 40em;
+    // max-width: 40em;
+
+  & .quick-toggle {
+    min-width: auto;
+    max-width: auto;
+    background-color: transparent;
+
+    &:focus,
+    &:hover {
+      color: $text_color;
+      // color: $light_color;
+      background-color: $divider_color !important;
+      // background-color: $trans_bg_color !important;
+    }
+
+    &:active {
+      color: $text_color;
+      // color: $light_color;
+      // background-color: $visit_color !important;
+      background-color: $divider_color !important;
+    }
+
+    &:checked {
+      // color: $text_color;
+      color: $light_color;
+      background-color: $primary_color !important;
+  
+      &:focus,
+      &:hover {
+        // color: $text_color;
+        color: $light_color;
+        @if $shell_version == 'old' {
+          background-color: mix($light_color, $primary_color, 6%) !important;
+        } @else {
+          background-color: st-mix($light_color, $primary_color, 6%) !important;
+        }
+      }
+  
+      &:active {
+        // color: $text_color;
+        color: $light_color;
+        @if $shell_version == 'old' {
+          background-color: mix($ligt_color, $primary_color, 15%) !important;
+        } @else {
+          background-color: st-mix($light_color, $primary_color, 15%) !important;
+        }
+      }
+    }
+
+    &:ltr { border-radius: $circular_radius 0 0 $circular_radius; }
+    &:ltr > StBoxLayout { padding-right: $base_padding * 2; }
+    &:rtl { border-radius: 0 $circular_radius $circular_radius 0; }
+    &:rtr > StBoxLayout { padding-left: $base_padding * 2; }
+
+    &:ltr:last-child { border-radius: $circular_radius; }
+    &:rtl:last-child { border-radius: $circular_radius; }
+  }
+
+  & .quick-toggle-menu-button {
+    padding: $scaled_padding $scaled_padding * 2;
+    border: none;
+    // color: $light_color;
+    // background-color: $fill_color !important;
+    background-color: transparent;
+
+    &:focus,
+    &:hover {
+      // color: $text_color;
+      color: $light_color;
+      background-color: $divider_color !important;
+    }
+  
+    &:active {
+      // color: $text_color;
+      color: $light_color;
+      background-color: $divider_color !important;
+    }
+  
+    &:checked {
+      // color: $text_color;
+      color: $light_color;
+      background-color: $primary_color !important;
+  
+      &:focus,
+      &:hover {
+        // color: $text_color;
+        color: $light_color;
+        // background-color: $divider_color;
+        @if $shell_version == 'old' {
+          background-color: mix($light_color, $primary_color, 6%) !important;
+        } @else {
+          background-color: st-mix($light_color, $primary_color, 6%) !important;
+        }
+      }
+  
+      &:active {
+        // color: $text_color;
+        color: $light_color;
+        // background-color: $divider_color;
+        @if $shell_version == 'old' {
+          background-color: mix($light_color, $primary_color, 15%) !important;
+        } @else {
+          background-color: st-mix($light_color, $primary_color, 15%) !important;
+        }
+      }
+    }
+
+    &:ltr {
+      border-radius: 0 $circular_radius $circular_radius 0;
+      border-left-width: 0;
+    }
+
+    &:rtl {
+      border-radius: $circular_radius 0 0 $circular_radius;
+      border-right-width: 0;
+    }
+  }
+
+  & .quick-toggle-separator {
+    width: 0;
+  }
+}
+
+// (sound, luminosity) button in quick settings menu 
+.quick-slider {
+  & > StBoxLayout { spacing: $base_padding; }
+
+  .icon-button { padding: $scaled_padding * 1.5; }
+
+  .slider-bin {
+    &:focus { @include button(focus); }
+    min-height: 16px; // slider size
+    padding: $base_padding;
+    border-radius: $circular_radius;
+  }
+}
+
+// menu when clicking on wifi or power buttons
+.quick-toggle-menu {
+  border-radius: $base_border_radius * 3;
+  padding: $base_padding * 3;
+  margin: $base_padding * 2 $base_padding * 6 0;
+  border: none !important;
+  background-color: $solid_bg_color !important;
+  // background-color: #f00;
+
+  .popup-menu-item {
+    border-radius: $bd_radius !important;
+    // border-radius: 0px !important;
+    // background-color: $bg_color;
+    min-height: 20px;
+
+    &:focus, &:hover, &.selected {
+      color: $text_color !important;
+      background-color: $selected_bg_color !important;
+    }
+
+    > StIcon {
+      // color: #f0f;
+      color: $text_color;
+      -st-icon-style: symbolic;
+    }
+  }
+
+  & .header {
+    spacing-rows: 0.5 * $base_padding;
+    spacing-columns: $base_padding * 2;
+    padding-bottom: 2 * $base_padding;
+
+    & .icon {
+      icon-size: $base_icon_size * 1.5; // a non-standard symbolic size but ok
+      border-radius: $circular_radius;
+      padding: 1.5 * $base_padding;
+      // background-color: transparentize($fg_color, 0.8);
+      background-color: transparent;
+      color: $text_color;
+
+      &.active {
+        // background-color: $selected_bg_color;
+        // background-color: transparent;
+        color: $text_color;
+        // color: #f00;
+      }
+    }
+
+    & .title {
+      @extend %title_3;
+      // color: #f0f;
+      color: $text_color;
+    }
+
+    & .subtitle {
+      @extend %caption_heading;
+      // color: #f00;
+    }
+  }
+}
+
+// power button, lock button, settings button, screenshot button 
+.quick-settings-system-item {
+  & > StBoxLayout { spacing: 2 * $base_padding; }
+
+  .icon-button {
+    // background-color: $bg_color;
+    // background-color: transparent;
+    // color: $reversed_text_color;
+    color: $fg_color;
+    border-radius: $circular_radius;
+    min-height: $menuitem_size !important;
+    min-width: $menuitem_size !important;
+    // padding: $container_padding;
+
+    &:hover { @include button(flat-hover); }
+    &:active { @include button(flat-active); }
+
+    > StIcon {
+     -st-icon-style: symbolic;
+     icon-size: $base_icon_size;
+    }
+
+  }
+
+  & .power-item {
+    min-height: 0;
+    min-width: 0;
+
+    &:insensitive {
+      @include button(normal);
+      background-color: transparent;
+    }
+  }
+}
+
+.nm-network-item {
+  .wireless-secure-icon {
+    icon-size: 0.5 * $base_icon_size;
+    color: $text_color;
+    // color: #f0f;
+  }
+}
+
+.bt-device-item {
+  .popup-menu-icon { -st-icon-style: symbolic; }
+}
+
+.bt-menu-placeholder.popup-menu-item {
+  @extend %title_4;
+  text-align: center;
+  // color: #f00;
+
+  padding: 2em 4em;
+}
+
+.device-subtitle { color: transparentize($fg_color, 0.5); }
+
+.keyboard-brightness-level {
+  spacing: $base_padding;
+
+  
+  // .button:checked {
+  StButton {
+    // @extend %default_button;
+    color: $text_color !important;
+    background-color: transparent;
+    
+    &:focus,
+    &:hover {
+      background-color: $divider_color;
+    }
+    
+    &:active {
+      background-color: $track_color;
+    }
+  
+    &:checked {
+      color: $light_color;
+      background-color: $selected_bg_color;
+      &:focus,
+      &:hover {
+        background-color: lighten($selected_bg_color, 0.3);
+      }
+      
+      &:active {
+        background-color: lighten($selected_bg_color, 0.5);
+        // background-color: $track_color;
+      }
+    }
+  }
+}
+
+// background apps
+
+.background-apps-quick-toggle {
+  min-height: 40px;
   background-color: transparent;
-  box-shadow: none;
-  // background-image: url("assets/background.png");
-  // background-repeat: no-repeat;
-  // background-size: cover;
+
+  & StIcon { icon-size: $base_icon_size !important; }
+}
+
+.background-app-item {
+  & .title { @extend %heading; }
+  & .subtitle { @extend %caption; }
+  & .popup-menu-icon {
+    icon-size: $base_icon_size * 1.5 !important;
+    -st-icon-style: regular !important;
+  }
+
+  & .icon-button {
+    @extend .icon-button;
+    padding: $base_padding;
+  }
+
+  & .spinner {
+    padding: $base_padding;
+  }
+
+  &.popup-inactive-menu-item { color: $fg_color; }
 }

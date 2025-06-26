@@ -17,7 +17,7 @@
 
 .ws-switcher-box {
   background: transparent;
-  height: 50px;
+  height: 48px;
   background-size: 32px;
   background: $divider_color;
   border-radius: $bt_radius;
@@ -28,7 +28,7 @@
 .ws-switcher-active-down,
 .ws-switcher-active-left,
 .ws-switcher-active-right {
-  height: 52px;
+  height: 64px;
   background-color: $primary_color;
   color: $light_alt_fg_color;
   border-radius: $base_border_radius + 3px;

@@ -2,14 +2,16 @@
 
 // Dialog
 #LookingGlassDialog {
-  background-color: $solid_osd_bg_color;
+  background-color: $solid_bg_color;
   spacing: $base_padding;
   margin: $base_padding;
   padding: 0;
-  border: 1px solid black;
+  // border: 1px solid black;
+  border: none; 
   border-radius: $wm_radius;
-  box-shadow: 0 2px 6px rgba(black, 0.15);
-  color: $osd_fg_color;
+  // box-shadow: 0 2px 6px rgba(black, 0.15);
+  box-shadow: none;
+  color: $fg_color;
 
   > #Toolbar {
     padding: 0 $base_padding * 2;
@@ -31,14 +33,14 @@
 
   .labels {
     spacing: $base_padding;
-    color: $osd_fg_color;
+    color: $text_color;
   }
 
   .notebook-tab {
     -natural-hpadding: $base_padding * 2;
     -minimum-hpadding: $base_padding * 2;
     font-weight: bold;
-    color: $light_hint_fg_color;
+    color: $text_color;
     padding: 0 16px;
     min-height: $medium_size;
     border-radius: 0;

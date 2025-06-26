@@ -2,15 +2,18 @@
 %search-entry, #overview .search-entry {
   color: $text_color;
   caret-color: $text_color;
-  // background-color: $bg_color;
-  background-color: transparent !important;
+  // background-color: transparent !important;
+  background-color: $reversed_divider_color !important;
   // background-clip: padding-box;
   width: 320px;
   min-height: $menuitem_size;
-  padding: 0 $base_padding !important;
+  // padding: 0 $base_padding * 4 !important;
+  padding: 0 $base_padding * 4 !important;
+  margin: $base_padding * 4 !important;
   selection-background-color: $selected_bg_color !important;
   selected-color: $text_color !important;
   // @include search_entry(normal, $fc:$light_track_color);
+  border-radius: $bt_radius !important;
   box-shadow: none;
 
   /*
@@ -45,5 +48,9 @@
 
   StLabel.hint-text {
     color: $text_color;
+  }
+
+  &:focus {
+    background-color: $reversed_track_color !important;
   }
 }
