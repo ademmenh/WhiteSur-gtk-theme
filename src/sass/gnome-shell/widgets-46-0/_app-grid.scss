@@ -20,37 +20,37 @@ $app_folder_size: 720px;
 // items in the app grid and dash
 .overview-tile {
   // color: $light_alt_fg_color;
-  color: $text_color;
+  color: $light_color;
   background-color: transparent;
 
   &:focus {
     // color: $light_fg_color;
-    color: $text_color;
+    // color: $text_color;
     // background-color: $light_divider_color;
-    background-color: $divider_color;
+    background-color: $reversed_divider_color;
   }
   &:hover {
     // color: $light_fg_color; 
-    color: $text_color;
+    // color: $text_color;
     // background-color: $light_divider_color;
-    background-color: $divider_color;
+    background-color: $reversed_divider_color;
   }
   &:active {
     // color: $light_fg_color;
-    color: $text_color;
+    // color: $text_color;
     // background-color: $light_track_color;
-    background-color: $track_color;
+    background-color: $reversed_track_color;
   }
   &:highlighted,&:selected,
   &:checked {
     // color: $light_fg_color;
-    color: $text_color;
+    // color: $text_color;
     // background-color: $light_track_color;
-    background-color: $track_color;
+    background-color: $reversed_track_color;
   }
   &:insensitive {
     // color: $light_alt_disabled_fg_color;
-    color: $text_color;
+    color: $grey_color;
     background-color: transparent;
   }
 
@@ -91,11 +91,11 @@ $app_folder_size: 720px;
   // background-color: $trans_bg_color;
   background-color: transparent;
 
-  &:focus { background-color: $divider_color; }
-  &:hover { background-color: $divider_color; }
-  &:active { background-color: $track_color; }
+  &:focus { background-color: $reversed_divider_color; }
+  &:hover { background-color: $reversed_divider_color; }
+  &:active { background-color: $reversed_track_color; }
   &:highlighted,&:selected,
-  &:checked { background-color: $track_color; }
+  &:checked { background-color: $reversed_track_color; }
   &:insensitive { background-color: transparent; }
 }
 
@@ -120,12 +120,12 @@ $app_folder_size: 720px;
     border: none !important;
 
     &:hover {
-      background-color: $track_color;
+      background-color: $reversed_track_color;
       color: $light_color;
     }
 
     &:active {
-      background-color: $track_color;
+      background-color: $reversed_track_color;
       color: $light_color;
     }
   }
@@ -153,7 +153,7 @@ $app_folder_size: 720px;
 
   &.next:ltr,$light_color
   &.previous:rtl {
-    background-gradient-start: $light_divider_color;
+    background-gradient-start: $reversed_divider_color;
     background-gradient-end: transparent;
     background-gradient-direction: horizontal;
     border-radius: $modal_radius 0px 0px $modal_radius;
@@ -162,7 +162,7 @@ $app_folder_size: 720px;
   &.previous:ltr,
   &.next:rtl {
     background-gradient-start: transparent;
-    background-gradient-end: $light_divider_color;
+    background-gradient-end: $reversed_divider_color;
     background-gradient-direction: horizontal;
     border-radius: 0px $modal_radius $modal_radius 0px;
   }
@@ -188,15 +188,16 @@ $app_folder_size: 720px;
 
   &:hover {
     //  background-color: $light_divider_color;
-    background-color: $divider_color;
+    background-color: $reversed_divider_color;
     //  color: $light_fg_color;
     color: $light_color;
   }
 
   &:active {
-    background-color: $track_color;
+    background-color: $reversed_track_color;
     //  background-color: $light_track_color;
     //  color: $light_fg_color;
     color: $light_color;
   }
 }
+
