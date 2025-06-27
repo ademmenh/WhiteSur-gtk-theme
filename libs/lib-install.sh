@@ -403,6 +403,8 @@ install_theemy() {
   elif [[ "${color}" == '-Dark' ]]; then
     local iconcolor='-Dark'
   fi
+  
+  # local iconcolor='-Dark'
 
   local TARGET_DIR="${dest}/${name}${color}${opacity}${alt}${theme}${scheme}"
   local TMP_DIR_T="${WHITESUR_TMP_DIR}/gtk-3.0${color}${opacity}${alt}${theme}${scheme}"
