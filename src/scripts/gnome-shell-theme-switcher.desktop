@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=sh -c "/usr/bin/env python3 $HOME/.local/bin/gnome-shell-theme-switcher.py >/dev/null 2>&1 &"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Auto Theme Switcher
+Comment=Automatically switches GNOME Shell theme based on dark style
