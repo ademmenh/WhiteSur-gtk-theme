@@ -1,8 +1,9 @@
 /* Login Dialog */
 
 #lockDialogGroup {
-  background-color: $solid_osd_bg_color;
-  background-image: url("assets/background.png");
+  background-color: $solid_bg_color;
+  // background-image: url("assets/background.png");
+  background-image: url($bg_image);
   background-size: cover;
 
   /* 
@@ -424,21 +425,24 @@
   background-color: transparent;
 
   StEntry {
-    color: $fg_color;
+    // color: $fg_color;
+    color: $text_color;
     // input-filed (username, password) caret color
-    caret-color: $fg_color;
-    background-color: $bg_color;
+    caret-color: $text_color;
+    background-color: $solid_bg_color;
     border-radius: $circular_radius;
 
     //input-filed place-holder-text (username, password) color
     StLabel.hint-text {
-      color: $fg_color;
+      color: $text_color;
     }
   }
 
   .modal-dialog-button {
-    background-color: rgb(0, 255, 132);
+    // background-color: rgb(0, 255, 132);
+    background-color: $solid_bg_color;
     border: none;
+    // border: 32px solid #ff0015;
     @include button(flat-normal, $tc: $light_fg_color);
     &:hover, &:focus { @include button(flat-hover, $tc: $light_fg_color); }
     &:active { @include button(flat-active, $tc: $light_fg_color); }
@@ -455,27 +459,19 @@
 
 // user name
 .user-widget-label {
-  color: $bg_color;
-}
-
-.login-dialog-banner {
-  color: $bg_color;
+  color: $reversed_text_color;
 }
 
 .login-dialog-message {
-  size: 32px;
+  // size: 16px;
   text-align: center;
-  color: $bg_color;
-}
-
-.login-dialog-message-warning {
-  font-size: 12px;
-  // color: $warning_color;
-  color: $bg_color;
+  // color: $bg_color;
+  @extend %description;
 }
 
 // user list + not listed label container
 .login-dialog-user-selection-box { 
+  width: 20em;
   background-color: transparent;
   spacing: $base_spacing * 4;
 }
@@ -486,7 +482,6 @@
   // background-color: #f0f;
   spacing: $base_spacing * 4;
   padding: 0px; // must be 0 to avoid issues in mouse clicking
-  width: 32em;
 
   // replaced in bottom
   /*
@@ -513,7 +508,6 @@
 // wrapper container of (userface + username) container
 .login-dialog-user-list-item {
   // height: 6em; should not be filled so it fill the container
-
   padding: $base_padding * 4;
   border-radius: $bt_radius;
   background-color: transparent;
@@ -523,21 +517,25 @@
   //   background-color: rgba($bg_color, $lower_opacity);
   // }
 
-  &:focus,
   &:hover,
   &:focus:hover {
-    // background-color: $divider_color !important;
-    background-color: rgba($bg_color, $lower_opacity);
+    // background-color: rgba($bg_color, $lower_opacity);
+    // background-color: $trans_bg_color;
+    background-color: $track_color !important;
   }
 
+  &:focus,
   &:active,
   &:focus:active {
     // background-color: rgba($bg_color, $higher_opacity);
-    background-color: rgba($bg_color, $middle_opacity);
+    // background-color: rgba($bg_color, $middle_opacity);
+    background-color: $divider_color !important;
+    // background-color: $secondary_trans_bg_color;
   }
 
   .login-dialog-timed-login-indicator {
     background-color: $bg_color !important;
+    // background-color: #f00 !important;
   }
 }
 
@@ -561,15 +559,17 @@
 .user-widget.horizontal{
   // width: 100em; // should not specify a width so it fill the contianer automaitically
   background-color: transparent; // should be transparent for no issues
-  padding: 0px; // should be 0 for no issues
+  padding: $base_padding; // should be 0 for no issues
   spacing: $base_spacing * 4;
+  color: $reversed_base_color;
   // padding-left: $base_padding * 4;
 }
 
 .user-widget.horizontal
 .user-widget-label {
-  font-size: 24pt;
-  font-weight: 600;
+  // font-size: 22pt;
+  // font-weight: 700;
+  @extend %title;
   // background-color: transparent;
   // background-color: #f00;
   /*
@@ -592,42 +592,48 @@
 // }
 
 .login-dialog-not-listed-label {
-  font-weight: 600;
-  // color: $light_alt_fg_color;
-  color: rgba($bg_color, $higher_opacity);
+  // font-size: 12pt;
+  // font-weight: 700;
+  @extend %small_description;
+  // color: rgba($bg_color, $higher_opacity);
+  color: $bg_color;
   padding-left: 4px;
   // padding-top: 1em;
-  font-size: 12pt;
 
   .login-dialog-not-listed-button:focus &,
   .login-dialog-not-listed-button:hover & {
-    color: $bg_color;
+    color: $trans_bg_color;
   }
 
-  // didn't find any utility
-  // &:hover { color: $light_alt_fg_color; }
-  // &:focus { background-color: light_divider_color; }
+  // didn't find any purpose
+  &:hover {
+    color: $track_color;
+  }
+
+  &:focus {
+    background-color: $track_color;
+  }
 }
 
-.login-dialog-prompt-label {
-  color: $bg_color;
-}
 
 // (userface + username) container
 .user-widget.vertical{
   text-align: center;
   background-color: transparent;
-  // spacing: 0px;
   spacing: $base_spacing * 2;
-  margin: $base_spacing * 4;
+  // margin: 0px;
 }
 
 // under user face
 .user-widget.vertical
 .user-widget-label {
-  font-size: 36pt;
-  font-weight: 800;
-  // font-size: 64pt;
+  // color: $bg_color;
+  // color: $text_color;
+  color: $reversed_text_color;
+  // font-size: 32pt !important;
+  // font-weight: 800;
+  padding-bottom: $base_padding * 2;
+  @extend %xlarge_title;
   // @if $scale == 'default' {
   //   @include fontsize($base_font_size + 16);
   // } @else {
@@ -647,7 +653,6 @@
   spacing: $base_spacing * 2;
   padding: $base_padding * 4;
   background-color: transparent;
-  // background-color: #f00;
 }
 
 // password prompt
@@ -655,11 +660,12 @@
   border-radius: $bt_radius;
   height: 2em;
   // background-color: #00f; // it is shown only in annimation
-  // padding: $base_padding * 50;
+  // padding: $base_padding * 100;
 }
 
 .login-dialog-prompt-label {
-  @include fontsize($base_font_size + 1px);
+  // @include fontsize($base_font_size + 1px);
+  @extend %description;
   padding-top: 1em;
 }
 
@@ -668,8 +674,8 @@
 .login-dialog-session-list-button {
   border-radius: $circular_radius;
   border: none;
-  color: $fg_color;
-  background-color: $bg_color;
+  color: $text_color;
+  background-color: $solid_bg_color;
 
   width: $base_icon_size * 2 !important;
   height: $base_icon_size * 2 !important;
@@ -686,6 +692,16 @@
   spacing: $container_padding;
 }
 
+.login-dialog-message-warning {
+  font-size: 16px;
+  color: $reversed_text_color;
+}
+
+.login-dialog-message-hint {
+  font-size: 16px;
+  color: $text_color;
+}
+
 // fedora logo contianer
 .login-dialog-logo-bin {
   background-color: transparent;
@@ -693,7 +709,12 @@
   padding: -64px 0;
 }
 
-.login-dialog-message-hint {
-  padding-top: 0;
-  padding-bottom: $container_padding * 3;
+// do not know
+.login-dialog-banner {
+  color: $bg_color;
+}
+
+// do not know
+.login-dialog-prompt-label {
+  color: $bg_color;
 }

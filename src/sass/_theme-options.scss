@@ -9,6 +9,7 @@ $sidebar_size: 200px;
 $nautilus_style: 'stable';
 
 // Gnome-shell panel opacity
+//removed
 $panel_opacity: 0.15;
 
 // Gnome-shell show apps button style
@@ -21,6 +22,7 @@ $panel_size: 'default';
 $font_size: 'normal';
 
 // Gnome-shell Panel Activities button style
+// removed
 $activities: 'default';
 
 // Panel font color
@@ -28,15 +30,19 @@ $panel_font: 'white';
 
 // Maximized window radius
 $max_window_style: 'square';
+// $max_window_style: 'round';
 
 // Monterey style
 $monterey: 'false';
 
 // Color style
-$darker: 'false';
+$darker: 'true';
 
 // GDM login dialog scale
 $scale: 'default';
+
+// GDM-bg:
+$bg_image: "file:///usr/share/backgrounds/gnome/nature.png";
 
 // gnome-shell version
 $shell_version: 'old';
