@@ -253,15 +253,29 @@
     // background-color: $bg_color;
     min-height: 20px;
 
-    &:focus, &:hover, &.selected {
-      color: $text_color !important;
+    &:focus,
+    &:hover,
+    &.selected {
+      color: $light_color !important;
       background-color: $selected_bg_color !important;
-    }
 
-    > StIcon {
-      // color: #f0f;
-      color: $text_color;
-      -st-icon-style: symbolic;
+      // here
+      > StIcon {
+        // color: #f0f;
+        color: $light_color;
+        -st-icon-style: symbolic;
+      }
+      
+      .popup-menu-arrow,
+      .popup-menu-icon {
+        color: $light_color;
+        icon-size: $base_icon_size;
+      }
+      
+      .wireless-secure-icon {
+        color: $light_color;
+        // color: #f0f;
+      }
     }
   }
 
@@ -336,14 +350,19 @@
 
 .nm-network-item {
   .wireless-secure-icon {
-    icon-size: 0.5 * $base_icon_size;
+    icon-size: 0.7 * $base_icon_size;
     color: $text_color;
     // color: #f0f;
   }
 }
 
 .bt-device-item {
-  .popup-menu-icon { -st-icon-style: symbolic; }
+  .popup-menu-icon {
+    -st-icon-style: symbolic;
+    color: $text_color;
+    icon-size: $base_icon_size;
+    icon-shadow: none !important;
+  }
 }
 
 .bt-menu-placeholder.popup-menu-item {
@@ -406,6 +425,9 @@
   & .popup-menu-icon {
     icon-size: $base_icon_size * 1.5 !important;
     -st-icon-style: regular !important;
+    color: $text_color;
+    icon-size: $base_icon_size;
+    icon-shadow: none !important;
   }
 
   & .icon-button {

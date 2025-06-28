@@ -37,7 +37,39 @@ $cakeisalie: "This stylesheet is generated, DO NOT EDIT";
   // $dialog_bg_color:                 if($variant == 'light', rgba($bg_color, $opacity), rgba($base_color, $opacity));
 }
 
-$selected_bg_color:                 if($scheme == 'nord', $nord_color_default, $theme_color_default);
+// $selected_bg_color:                 if($scheme == 'nord', $nord_color_default, $theme_color_default);
+@if $theme == 'blue' {
+  $selected_bg_color:               if($scheme == 'nord', $nord_color_blue, $theme_color_blue);
+}
+
+@if $theme == 'purple' {
+  $selected_bg_color:               if($scheme == 'nord', $nord_color_purple, $theme_color_purple);
+}
+
+@if $theme == 'pink' {
+  $selected_bg_color:               if($scheme == 'nord', $nord_color_pink, $theme_color_pink);
+}
+
+@if $theme == 'red' {
+  $selected_bg_color:               if($scheme == 'nord', $nord_color_red, $theme_color_red);
+}
+
+@if $theme == 'orange' {
+  $selected_bg_color:               if($scheme == 'nord', $nord_color_orange, $theme_color_orange);
+}
+
+@if $theme == 'yellow' {
+  $selected_bg_color:               if($scheme == 'nord', $nord_color_yellow, $theme_color_yellow);
+}
+
+@if $theme == 'green' {
+  $selected_bg_color:               if($scheme == 'nord', $nord_color_green, $theme_color_green);
+}
+
+@if $theme == 'grey' {
+  $selected_bg_color:               if($scheme == 'nord', $nord_color_grey, $theme_color_grey);
+}
+
 $primary_color:                     $selected_bg_color;
 
 $active_color:                      if($variant == 'light', rgba(black, 0.42), rgba(white, 0.42));
